@@ -6,16 +6,26 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# Install node/npm
+# Install brew based tools
 brew install nvm
-nvm install node
-nvm use default
-
 brew install wget
 brew install htop
 brew install nmap
+brew install telnet
+brew install kubernetes-cli
 brew install balena-cli
+brew install now-cli
+
 brew cask install ngrok
 
 # Cleanup
 brew cleanup
+
+# Install node/npm
+nvm install node
+nvm use default
+
+# npm global packages
+serve
+vue
+etc
