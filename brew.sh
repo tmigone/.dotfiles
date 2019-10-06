@@ -11,6 +11,11 @@ brew install nvm
 nvm install node
 nvm use default
 
+brew install wget
+brew install htop
+brew install nmap
+brew install balena-cli
+brew cask install ngrok
 
 # Cleanup
 brew cleanup
