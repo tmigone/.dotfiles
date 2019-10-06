@@ -6,6 +6,9 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 export EDITOR=/usr/bin/nano # default text editor
 export BLOCKSIZE=1M # for ls, df, etc
 
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 # Aliases
 alias ls='ls -GFh'
 alias ll='ls -al'
