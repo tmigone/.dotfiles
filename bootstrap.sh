@@ -26,6 +26,7 @@ nvm install node
 nvm use default
 
 # npm global packages
-serve
+npm install -g serve
+npm install -g eslint
 vue
 etc
