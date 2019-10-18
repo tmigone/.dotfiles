@@ -7,7 +7,7 @@ export EDITOR=/usr/bin/nano # default text editor
 export BLOCKSIZE=1M # for ls, df, etc
 
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+source $(brew --prefix nvm)/nvm.sh --no-use
 
 # Aliases
 alias ls='ls -GFh'
