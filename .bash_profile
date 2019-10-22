@@ -22,7 +22,7 @@ alias cl='clear'
 
 alias docker-clean-containers='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
 alias docker-clean-images='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
-alias docker-clean='docker-clean-containers || true && docker-clean-images'
+alias docker-clean='(docker-clean-containers || true && docker-clean-images) && docker volume prune --force'
 
 myip () {
   EN0=$(ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}')
