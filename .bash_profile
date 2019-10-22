@@ -18,6 +18,9 @@ alias mkdir='mkdir -p'
 alias home='cd ~'
 alias dev='cd ~/Documents/git/tomasmigone'
 alias bal='cd ~/Documents/git/balena'
+alias cl='clear'
+
+alias docker-clean-images='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
 
 myip () {
   EN0=$(ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}')
