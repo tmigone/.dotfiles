@@ -11,6 +11,7 @@ brew install nvm
 brew install wget
 brew install htop
 brew install nmap
+brew install tree
 brew install telnet
 brew install kubernetes-cli
 brew install balena-cli
