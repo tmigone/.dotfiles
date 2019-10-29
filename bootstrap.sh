@@ -31,3 +31,10 @@ npm install -g serve
 npm install -g eslint
 vue
 etc
+
+# Defaults
+git config --global user.name "Tomás Migone"
+git config --global user.email "tomasmigone@gmail.com"
+npm config set init-author-name "Tomás Migone" --global
+npm config set init-author-email "tomasmigone@gmail.com" --global
+npm config set init-license "MIT" --global
