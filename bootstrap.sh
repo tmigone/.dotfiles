@@ -29,12 +29,16 @@ nvm use default
 # npm global packages
 npm install -g serve
 npm install -g eslint
-vue
-etc
 
-# Defaults
-git config --global user.name "Tomás Migone"
-git config --global user.email "tomasmigone@gmail.com"
+# Create some dirs
+mkdir -p ~/Documents/git/balena
+mkdir -p ~/Documents/git/tmigone
+
+# Git defaults
+cp .gitconfig ~/.gitconfig
+cp .gitconfig_balena ~/Documents/git/balena/.gitconfig_balena 
+
+# Npm defaults
 npm config set init-author-name "Tomás Migone" --global
 npm config set init-author-email "tomasmigone@gmail.com" --global
 npm config set init-license "MIT" --global
