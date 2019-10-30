@@ -16,7 +16,7 @@ alias h='history'
 alias mkdir='mkdir -p'
 
 alias home='cd ~'
-alias dev='cd ~/Documents/git/tomasmigone'
+alias dev='cd ~/Documents/git/tmigone'
 alias bal='cd ~/Documents/git/balena'
 alias cl='clear'
 
