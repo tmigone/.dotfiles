@@ -16,6 +16,7 @@ brew install telnet
 brew install kubernetes-cli
 brew install balena-cli
 brew install now-cli
+brew install netlify-cli
 
 brew cask install ngrok
 
