@@ -7,6 +7,7 @@ brew update
 brew upgrade
 
 # Install brew based tools
+brew install jq
 brew install nvm
 brew install wget
 brew install htop
