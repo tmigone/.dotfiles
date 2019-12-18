@@ -18,6 +18,7 @@ brew install kubernetes-cli
 brew install balena-cli
 brew install now-cli
 brew install netlify-cli
+brew install python3
 
 brew cask install ngrok
 brew cask install google-cloud-sdk
