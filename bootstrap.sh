@@ -33,6 +33,7 @@ nvm use default
 # npm global packages
 npm install -g serve
 npm install -g eslint
+npm install -g @vue/cli
 
 # Create some dirs
 mkdir -p ~/Documents/git/balena
