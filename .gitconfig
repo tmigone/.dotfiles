@@ -4,3 +4,9 @@
 
 [includeIf "gitdir:~/Documents/git/balena/"]
     path = ~/Documents/git/balena/.gitconfig_balena
+
+[alias]
+    br = branch
+    cl = clone
+    amend = commit --amend
+    push-force = push --force-with-lease
