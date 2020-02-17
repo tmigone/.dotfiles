@@ -60,3 +60,14 @@ npm config set init-license "MIT" --global
 
 # Bash profile
 wget -O ~/.bash_profile https://raw.githubusercontent.com/tmigone/dotfiles/master/.bash_profile
+
+# macOS Dock settings
+defaults write com.apple.dock tilesize -int 40
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 80
+defaults write com.apple.dock orientation -string 'left'
+defaults write com.apple.dock mineffect -string 'scale'
+defaults write NSGlobalDomain AppleWindowTabbingMode -string 'always'
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock show-recents -bool false
+killall Dock
