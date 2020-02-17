@@ -71,3 +71,11 @@ defaults write NSGlobalDomain AppleWindowTabbingMode -string 'always'
 defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock show-recents -bool false
 killall Dock
+
+# macOS disable cursor shake
+defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
+
+# macOS terminal settings
+defaults write com.apple.terminal "Default Window Settings" -string "Novel"
+defaults write com.apple.terminal "Startup Window Settings" -string "Novel"
+
