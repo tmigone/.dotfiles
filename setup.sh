@@ -1,34 +1,43 @@
 #!/usr/bin/env bash
 
-# Make sure we’re using the latest Homebrew.
-brew update
+# Install homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew update && brew upgrade && brew cleanup && brew cask cleanup
 
-# Upgrade any already-installed formulae.
-brew upgrade
-
-# Install brew based tools
+# Install Linux tools
 brew install jq
-brew install nvm
 brew install wget
 brew install htop
 brew install nmap
 brew install tree
 brew install telnet
+brew install tldr
+brew cask install ngrok
+
+# Install CLI tools
 brew install kubernetes-cli
 brew install balena-cli
 brew install now-cli
 brew install netlify-cli
-brew install python3
-
-brew cask install ngrok
 brew cask install google-cloud-sdk
 
-# Cleanup
-brew cleanup
-
-# Install node/npm
+# Install programming language environments
+brew install python3
+brew install nvm
 nvm install node
 nvm use default
+
+# Install applications
+brew cask install google-chrome
+brew cask installspotify 
+brew cask installslack
+brew cask install visual-studio-code
+brew cask install flowdock
+brew cask install balenaetcher
+brew install transmission
+
+# Cleanup
+brew cleanup && brew cask cleanup
 
 # npm global packages
 npm install -g serve
