@@ -1,58 +1,62 @@
 #!/usr/bin/env bash
 
-# Install homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update && brew upgrade && brew cleanup && brew cask cleanup
+# Install xcode command line tools
+echo "- Checking XCode Command Line Tools installation"
+if ! (xcode-select -p 2>/dev/null 1>/dev/null); then
+  echo "XCode Command Line Tools not installed. Complete installation and re-run script."
+  xcode-select --install
+fi
 
-# Install Linux tools
-brew install jq
-brew install wget
-brew install htop
-brew install nmap
-brew install tree
-brew install telnet
-brew install tldr
+# SSH key
+if [ ! -f ~/.ssh/id_rsa ]; then
+  echo "SSH keys not present, creating new one..."
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "tomasmigone@gmail.com"
+fi
+
+# Install homebrew
+echo "- Installing Homebrew"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew update && brew upgrade && brew cleanup
+
+# Install utilities
+echo "- Installing command line utilities"
+brew install git jq wget htop nmap tree telnet tldr
+# Check git being used is homebrew (catalina onwards seems ok)
 brew cask install ngrok
 
+# Install programming languages
+echo "- Installing programming languages"
+brew install python node
+
 # Install CLI tools
-brew install kubernetes-cli
-brew install balena-cli
-brew install now-cli
-brew install netlify-cli
+echo "- Installing CLI tools"
+brew install kubernetes-cli balena-cli now-cli netlify-cli
 brew cask install google-cloud-sdk
 
-# Install programming language environments
-brew install python3
-brew install nvm
-nvm install node
-nvm use default
-
 # Install applications
-brew cask install google-chrome
-brew cask installspotify 
-brew cask installslack
-brew cask install visual-studio-code
-brew cask install flowdock
-brew cask install balenaetcher
-brew install transmission
+echo "- Installing applications"
+brew cask install google-chrome spotify slack visual-studio-code flowdock balenaetcher transmission postman docker whatsapp
+brew tap homebrew/cask-drivers
+brew cask install logitech-control-center
 
 # Cleanup
-brew cleanup && brew cask cleanup
+brew cleanup
 
 # npm global packages
-npm install -g serve
-npm install -g eslint
-npm install -g @vue/cli
+npm install -g serve eslint @vue/cli
 
 # Create some dirs
 mkdir -p ~/Documents/git/balena
 mkdir -p ~/Documents/git/tmigone
 
 # Git defaults
-cp .gitconfig ~/.gitconfig
-cp .gitconfig_balena ~/Documents/git/balena/.gitconfig_balena 
+wget -O ~/.gitconfig https://raw.githubusercontent.com/tmigone/dotfiles/master/.gitconfig
+wget -O ~/Documents/git/balena/.gitconfig_balena https://raw.githubusercontent.com/tmigone/dotfiles/master/.gitconfig_balena
 
 # Npm defaults
 npm config set init-author-name "Tomás Migone" --global
 npm config set init-author-email "tomasmigone@gmail.com" --global
 npm config set init-license "MIT" --global
+
+# Bash profile
+wget -O ~/.bash_profile https://raw.githubusercontent.com/tmigone/dotfiles/master/.bash_profile
