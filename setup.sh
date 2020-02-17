@@ -35,7 +35,7 @@ brew cask install google-cloud-sdk
 
 # Install applications
 echo "- Installing applications"
-brew cask install google-chrome spotify slack visual-studio-code flowdock balenaetcher transmission postman docker whatsapp battle-net
+brew cask install google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission postman docker whatsapp battle-net
 brew tap homebrew/cask-drivers
 brew cask install logitech-control-center
 
@@ -43,7 +43,7 @@ brew cask install logitech-control-center
 brew cleanup
 
 # npm global packages
-npm install -g serve eslint @vue/cli
+npm install -g serve node-gyp eslint @vue/cli
 
 # Create some dirs
 mkdir -p ~/Documents/git/balena
@@ -70,6 +70,16 @@ defaults write com.apple.dock mineffect -string 'scale'
 defaults write NSGlobalDomain AppleWindowTabbingMode -string 'always'
 defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/System Preferences.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Calendar.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Utilities/Terminal.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Google Chrome.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Spotify.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/WhatsApp.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Slack.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Flowdock.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Visual Studio Code.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 killall Dock
 
 # macOS disable cursor shake
@@ -78,4 +88,3 @@ defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
 # macOS terminal settings
 defaults write com.apple.terminal "Default Window Settings" -string "Novel"
 defaults write com.apple.terminal "Startup Window Settings" -string "Novel"
-
