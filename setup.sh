@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Computer name
+MY_NAME=jarvis
+sudo scutil --set ComputerName "$MY_NAME" && \
+sudo scutil --set HostName "$MY_NAME" && \
+sudo scutil --set LocalHostName "$MY_NAME" && \
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$MY_NAME"
+
 # Install xcode command line tools
 echo "- Checking XCode Command Line Tools installation"
 if ! (xcode-select -p 2>/dev/null 1>/dev/null); then
@@ -70,6 +77,7 @@ defaults write com.apple.dock mineffect -string 'scale'
 defaults write NSGlobalDomain AppleWindowTabbingMode -string 'always'
 defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock show-recents -bool false
+
 defaults write com.apple.dock persistent-apps -array
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/System Preferences.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Calendar.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
@@ -88,3 +96,13 @@ defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
 # macOS terminal settings
 defaults write com.apple.terminal "Default Window Settings" -string "Novel"
 defaults write com.apple.terminal "Startup Window Settings" -string "Novel"
+
+# TODO: Find a way of setting these programatically
+## System Preferences
+### Keyboard
+# - Input Sources > Spanish-ISO
+# - Shortcuts
+#   + Keyboard > Move focus to next window: ⌘º
+#   + Full Keyboard Access: All controls
+### Terminal
+# - Novel > Window > 120x30
