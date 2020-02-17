@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# Computer name
-MY_NAME=jarvis
-sudo scutil --set ComputerName "$MY_NAME" && \
-sudo scutil --set HostName "$MY_NAME" && \
-sudo scutil --set LocalHostName "$MY_NAME" && \
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$MY_NAME"
-
 # Install xcode command line tools
 echo "- Checking XCode Command Line Tools installation"
 if ! (xcode-select -p 2>/dev/null 1>/dev/null); then
@@ -19,6 +12,13 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   echo "SSH keys not present, creating new one..."
   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "tomasmigone@gmail.com"
 fi
+
+# Computer name
+COMPUTER_NAME=jarvis
+sudo scutil --set ComputerName "$COMPUTER_NAME" && \
+sudo scutil --set HostName "$COMPUTER_NAME" && \
+sudo scutil --set LocalHostName "$COMPUTER_NAME" && \
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 # Install homebrew
 echo "- Installing Homebrew"
