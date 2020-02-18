@@ -42,7 +42,7 @@ brew cask install google-cloud-sdk
 
 # Install applications
 echo "- Installing applications"
-brew cask install google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission postman docker whatsapp battle-net twitch
+brew cask install google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission postman docker whatsapp battle-net twitch zoomus
 brew tap homebrew/cask-drivers
 brew cask install logitech-control-center
 
