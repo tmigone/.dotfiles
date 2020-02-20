@@ -10,3 +10,4 @@
     cl = clone
     amend = commit --amend
     push-force = push --force-with-lease
+    push-upstream = push --set-upstream origin
