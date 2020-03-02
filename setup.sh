@@ -46,6 +46,10 @@ brew cask install google-chrome spotify slack discord visual-studio-code flowdoc
 brew tap homebrew/cask-drivers
 brew cask install logitech-control-center
 
+# Install App Store applications
+brew install mas
+brew lucky "Paint Pad"
+
 # Cleanup
 brew cleanup
 
