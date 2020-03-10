@@ -33,7 +33,7 @@ brew cask install ngrok
 
 # Install programming languages
 echo "- Installing programming languages"
-brew install python node
+brew install python node typescript
 
 # Install CLI tools
 echo "- Installing CLI tools"
@@ -54,7 +54,7 @@ brew lucky "Paint Pad"
 brew cleanup
 
 # npm global packages
-npm install -g serve node-gyp eslint mocha @vue/cli
+npm install -g serve node-gyp eslint mocha ts-node @vue/cli
 
 # Create some dirs
 mkdir -p ~/Documents/git/balena
