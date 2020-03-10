@@ -54,7 +54,7 @@ brew lucky "Paint Pad"
 brew cleanup
 
 # npm global packages
-npm install -g serve node-gyp eslint @vue/cli
+npm install -g serve node-gyp eslint mocha @vue/cli
 
 # Create some dirs
 mkdir -p ~/Documents/git/balena
