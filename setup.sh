@@ -37,7 +37,7 @@ brew install python node typescript
 
 # Install CLI tools
 echo "- Installing CLI tools"
-brew install kubernetes-cli balena-cli now-cli netlify-cli
+brew install kubernetes-cli minikube balena-cli now-cli netlify-cli
 brew cask install google-cloud-sdk
 
 # Install applications
