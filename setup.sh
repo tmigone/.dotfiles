@@ -110,4 +110,4 @@ defaults write com.apple.terminal "Startup Window Settings" -string "Novel"
 #   + Keyboard > Move focus to next window: ⌘º
 #   + Full Keyboard Access: All controls
 ### Terminal
-# - Novel > Window > 120x30
+# - Novel > Window > 140x40
