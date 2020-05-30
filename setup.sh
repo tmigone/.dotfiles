@@ -109,5 +109,6 @@ defaults write com.apple.terminal "Startup Window Settings" -string "Novel"
 # - Shortcuts
 #   + Keyboard > Move focus to next window: ⌘º
 #   + Full Keyboard Access: All controls
+#   + Accessibility > Disable VoiceOver on/off and Show accessibility controls
 ### Terminal
 # - Novel > Window > 140x40
