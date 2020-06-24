@@ -8,6 +8,7 @@
 [alias]
     br = branch
     cl = clone
+    cs = commit -s
     amend = commit --amend
     push-force = push --force-with-lease
     push-upstream = push --set-upstream origin
