@@ -98,6 +98,11 @@ killall Dock
 # macOS disable cursor shake
 defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
 
+# disable mouse acceleration, better for gamez
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
+# Tracking speed > 4/10
+# Scrolling speed > 4/8
+
 # macOS terminal settings
 defaults write com.apple.terminal "Default Window Settings" -string "Novel"
 defaults write com.apple.terminal "Startup Window Settings" -string "Novel"
