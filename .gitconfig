@@ -1,14 +1,28 @@
 [user]
-	name = Tomás Migone
-	email = tomasmigone@gmail.com
+    name = Tomás Migone
+    email = tomasmigone@gmail.com
+
+[core]
+    excludesfile = ~/.gitignore_global
 
 [includeIf "gitdir:~/Documents/git/balena/"]
     path = ~/Documents/git/balena/.gitconfig_balena
 
 [alias]
+    aa = add .
     br = branch
     cl = clone
     cs = commit -s
+    ci = commit
+    st = status --porcelain -sb
+    ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    contrib = shortlog --summary --numbered
     amend = commit --amend
     push-force = push --force-with-lease
     push-upstream = push --set-upstream origin
+
+[pull]
+    rebase = false
+
+[push]
+    followTags = true
