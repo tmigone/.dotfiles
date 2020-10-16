@@ -108,6 +108,7 @@ alias bal='cd ~/Documents/git/balena'
 alias cl='clear'
 alias g='google'
 alias code='code --reuse-window --add'
+alias cat='ccat'
 
 alias zcat='cat ~/.zshrc'
 alias zcfg='nano ~/.zshrc'
