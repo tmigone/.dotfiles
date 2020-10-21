@@ -42,13 +42,15 @@ brew cask install google-cloud-sdk
 
 # Install applications
 echo "- Installing applications"
-brew cask install google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoomus steam insomnia dbeaver-community vlc fritzing pygments zsh-syntax-highlighting zsh-autosuggestions
+brew cask install google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoomus steam insomnia dbeaver-community vlc fritzing pygments
 brew tap homebrew/cask-drivers
 brew cask install logitech-control-center
 
 # Install App Store applications
 brew install mas
 brew lucky "Paint Pad"
+
+brew install zsh-syntax-highlighting zsh-autosuggestions
 
 # Cleanup
 brew cleanup
@@ -71,6 +73,9 @@ npm config set init-license "MIT" --global
 
 # Bash profile
 wget -O ~/.bash_profile https://raw.githubusercontent.com/tmigone/dotfiles/master/.bash_profile
+
+# zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # macOS Dock settings
 defaults write com.apple.dock tilesize -int 40
