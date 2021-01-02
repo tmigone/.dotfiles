@@ -29,7 +29,7 @@ brew update && brew upgrade && brew cleanup
 echo "- Installing command line utilities"
 brew install git jq wget htop nmap tree telnet tldr
 # Check git being used is homebrew (catalina onwards seems ok)
-brew cask install ngrok
+brew install --cask ngrok
 
 # Install programming languages
 echo "- Installing programming languages"
@@ -38,13 +38,13 @@ brew install python node typescript
 # Install CLI tools
 echo "- Installing CLI tools"
 brew install kubernetes-cli minikube balena-cli now-cli netlify-cli
-brew cask install google-cloud-sdk
+brew install --cask google-cloud-sdk
 
 # Install applications
 echo "- Installing applications"
-brew cask install google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoomus steam insomnia dbeaver-community vlc fritzing pygments
+brew install --cask google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoomus steam insomnia dbeaver-community vlc fritzing pygments arduino
 brew tap homebrew/cask-drivers
-brew cask install logitech-control-center
+brew install --cask logitech-control-center
 
 # Install App Store applications
 brew install mas
