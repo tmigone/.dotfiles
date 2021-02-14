@@ -117,5 +117,5 @@ defaults write .GlobalPreferences com.apple.mouse.scaling -1
 # - Input Sources > Spanish-ISO
 # - Shortcuts
 #   + Keyboard > Move focus to next window: ⌘º
-#   + Full Keyboard Access: All controls
+#   + Use keyboard navigation to move focus between controls: Checked
 #   + Accessibility > Disable VoiceOver on/off and Show accessibility controls
