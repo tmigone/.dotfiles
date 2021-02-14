@@ -43,40 +43,42 @@ brew install --cask google-cloud-sdk
 # Install applications
 echo "- Installing applications"
 brew install pygments
-brew install --cask google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoomus steam insomnia dbeaver-community vlc fritzing arduino autodesk-fusion360
+brew install --cask google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoomus steam insomnia dbeaver-community vlc fritzing arduino autodesk-fusion360 ultimaker-cura
 brew tap homebrew/cask-drivers
 brew install --cask logitech-control-center
 
 # Install App Store applications
 brew install mas
-brew lucky "Paint Pad"
+echo "Sign in to the App store and hit enter..."
+read
+mas lucky "Paint Pad"
 
 brew install zsh-syntax-highlighting zsh-autosuggestions
+brew install --cask iterm2
 
 # Cleanup
 brew cleanup
 
 # npm global packages
-npm install -g serve node-gyp eslint mocha ts-node @vue/cli
+npm install -g serve node-gyp eslint mocha @vue/cli
 
 # Create some dirs
 mkdir -p ~/Documents/git/balena
 mkdir -p ~/Documents/git/tmigone
 
 # Git defaults
-wget -O ~/.gitconfig https://raw.githubusercontent.com/tmigone/dotfiles/master/.gitconfig
-wget -O ~/Documents/git/balena/.gitconfig_balena https://raw.githubusercontent.com/tmigone/dotfiles/master/.gitconfig_balena
+wget -O ~/.gitconfig https://raw.githubusercontent.com/tmigone/dotfiles/master/git/.gitconfig
+wget -O ~/Documents/git/balena/.gitconfig_balena https://raw.githubusercontent.com/tmigone/dotfiles/master/git/.gitconfig_balena
 
 # Npm defaults
 npm config set init-author-name "Tomás Migone" --global
 npm config set init-author-email "tomasmigone@gmail.com" --global
 npm config set init-license "MIT" --global
 
-# Bash profile
-wget -O ~/.bash_profile https://raw.githubusercontent.com/tmigone/dotfiles/master/.bash_profile
-
 # zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+wget -O ~/.zshrc https://raw.githubusercontent.com/tmigone/dotfiles/master/zsh/.zshrc
+wget -O ~/.oh-my-zsh/custom/themes/tomi.zsh-theme https://raw.githubusercontent.com/tmigone/dotfiles/master/oh-my-zsh/tomi.zsh-theme
 
 # macOS Dock settings
 defaults write com.apple.dock tilesize -int 40
@@ -91,13 +93,13 @@ defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock persistent-apps -array
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/System Preferences.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Calendar.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
-defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/System/Applications/Utilities/Terminal.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/iTerm.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Google Chrome.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Spotify.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Discord.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/WhatsApp.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Slack.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Flowdock.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
-defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Discord.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Visual Studio Code.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 killall Dock
 
