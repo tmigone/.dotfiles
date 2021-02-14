@@ -111,10 +111,6 @@ defaults write .GlobalPreferences com.apple.mouse.scaling -1
 # Tracking speed > 4/10
 # Scrolling speed > 4/8
 
-# macOS terminal settings
-defaults write com.apple.terminal "Default Window Settings" -string "Novel"
-defaults write com.apple.terminal "Startup Window Settings" -string "Novel"
-
 # TODO: Find a way of setting these programatically
 ## System Preferences
 ### Keyboard
@@ -123,5 +119,3 @@ defaults write com.apple.terminal "Startup Window Settings" -string "Novel"
 #   + Keyboard > Move focus to next window: ⌘º
 #   + Full Keyboard Access: All controls
 #   + Accessibility > Disable VoiceOver on/off and Show accessibility controls
-### Terminal
-# - Novel > Window > 140x40
