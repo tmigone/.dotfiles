@@ -112,6 +112,10 @@ defaults write .GlobalPreferences com.apple.mouse.scaling -1
 # Tracking speed > 4/10
 # Scrolling speed > 4/8
 
+# MacBook settings
+# Enable tap to click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+
 # TODO: Find a way of setting these programatically
 ## System Preferences
 ### Keyboard
