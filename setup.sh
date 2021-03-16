@@ -107,10 +107,12 @@ killall Dock
 # macOS disable cursor shake
 defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
 
-# disable mouse acceleration, better for gamez
+# Gamez
 defaults write .GlobalPreferences com.apple.mouse.scaling -1
-# Tracking speed > 4/10
-# Scrolling speed > 4/8
+# Mouse "Tracking speed" > 4/10
+# Mouse "Scrolling speed" > 4/8
+# Keyboard "Key Repeat" > 7/8
+# Keyboard "Delay Until Repeat" > 5/6
 
 # MacBook settings
 # Enable tap to click
