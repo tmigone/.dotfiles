@@ -61,7 +61,7 @@ brew install --cask iterm2
 brew cleanup
 
 # npm global packages
-npm install -g serve node-gyp eslint mocha @vue/cli
+npm install -g serve node-gyp eslint mocha @vue/cli firebase-tools
 
 # Create some dirs
 mkdir -p ~/Documents/git/balena
@@ -109,7 +109,7 @@ defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
 
 # Gamez
 defaults write .GlobalPreferences com.apple.mouse.scaling -1
-# Mouse "Tracking speed" > 4/10
+# Mouse "Tracking speed" > 4/10 ??? 5/10 ?
 # Mouse "Scrolling speed" > 4/8
 # Keyboard "Key Repeat" > 7/8
 # Keyboard "Delay Until Repeat" > 5/6
