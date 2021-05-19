@@ -7,7 +7,6 @@
 
 [pager]
     branch = false
-    log = false
 
 [includeIf "gitdir:~/Documents/git/balena/"]
     path = ~/Documents/git/balena/.gitconfig_balena
