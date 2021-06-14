@@ -109,6 +109,7 @@ alias dev='cd ~/Documents/git/tmigone'
 alias bal='cd ~/Documents/git/balena'
 alias cl='clear'
 alias g='google'
+alias gh="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
 alias code='code --reuse-window --add'
 alias cat='ccat'
 
