@@ -114,6 +114,9 @@ defaults write .GlobalPreferences com.apple.mouse.scaling -1
 # Keyboard "Key Repeat" > 7/8
 # Keyboard "Delay Until Repeat" > 5/6
 
+# 3D printing
+git clone git@github.com:fieldOfView/Cura-OctoPrintPlugin.git /Applications/Ultimaker\ Cura.app/Contents/Resources/plugins/plugins/OctoPrintPlugin
+ 
 # MacBook settings
 # Enable tap to click
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
