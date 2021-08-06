@@ -23,7 +23,7 @@
     contrib = shortlog --summary --numbered
     amend = commit --amend
     push-force = push --force-with-lease
-    push-upstream = push --set-upstream origin
+    push-upstream = "!f() { git push --set-upstream origin $(git branch --show-current); }; f"
 
 [pull]
     rebase = false
