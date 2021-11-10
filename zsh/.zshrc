@@ -135,6 +135,22 @@ myip () {
   echo 'Public IP: ' $PRIVATE_IP
 }
 
+dockersh () {
+  local CONTAINER_ID=$1
+  if [[ -z "$CONTAINER_ID" ]]; then
+    echo "Usage: $0 CONTAINER_ID"
+    return 1
+  fi
+
+  # try bash first (debian/ubuntu/fedora)
+  docker exec -it "$CONTAINER_ID" /bin/bash
+
+  # if that fails, try ash (alpine)
+  if [[ $? -ne 0 ]]; then
+    docker exec -it "$CONTAINER_ID" /bin/ash
+  fi
+}
+
 # Skip forward/back a word with opt-arrow
 bindkey '[C' forward-word
 bindkey '[D' backward-word
