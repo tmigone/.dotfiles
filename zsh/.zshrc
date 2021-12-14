@@ -70,7 +70,7 @@ ZSH_DISABLE_COMPFIX=true
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize web-search docker docker-compose gitignore)
+plugins=(git colorize web-search docker docker-compose gitignore shrink-path)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,6 +115,9 @@ alias cat='ccat'
 alias t='tmux'
 alias tcfg='nano ~/.tmux.conf'
 
+alias t='tmux'
+alias tcfg='nano ~/.tmux.conf'
+alias tcat='cat ~/.tmux.conf'
 alias zcat='cat ~/.zshrc'
 alias zcfg='nano ~/.zshrc'
 
@@ -156,6 +159,8 @@ dockersh () {
 # Skip forward/back a word with opt-arrow
 bindkey '[C' forward-word
 bindkey '[D' backward-word
+
+bindkey 'º' autosuggest-execute
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
