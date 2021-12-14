@@ -112,12 +112,11 @@ alias g='google'
 alias gh="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
 alias code='code --reuse-window --add'
 alias cat='ccat'
-alias t='tmux'
-alias tcfg='nano ~/.tmux.conf'
 
 alias t='tmux'
 alias tcfg='nano ~/.tmux.conf'
 alias tcat='cat ~/.tmux.conf'
+
 alias zcat='cat ~/.zshrc'
 alias zcfg='nano ~/.zshrc'
 
@@ -160,6 +159,7 @@ dockersh () {
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
+# Select and execute suggestion with º, right key default is too far
 bindkey 'º' autosuggest-execute
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
