@@ -42,7 +42,7 @@ brew install --cask google-cloud-sdk
 
 # Install applications
 echo "- Installing applications"
-brew install pygments hadolint bfg
+brew install pygments hadolint bfg tmux
 brew install --cask google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoom steam insomnia dbeaver-community vlc fritzing arduino autodesk-fusion360 ultimaker-cura signal
 open -a /usr/local/Caskroom/battle-net/latest/Battle.net-Setup.app
 brew tap homebrew/cask-drivers
