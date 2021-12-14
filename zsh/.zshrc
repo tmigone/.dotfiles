@@ -113,6 +113,9 @@ alias gh="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/ht
 alias code='code --reuse-window --add'
 alias cat='ccat'
 
+alias t='tmux'
+alias tcfg='nano ~/.tmux.conf'
+alias tcat='cat ~/.tmux.conf'
 alias zcat='cat ~/.zshrc'
 alias zcfg='nano ~/.zshrc'
 
@@ -154,6 +157,8 @@ dockersh () {
 # Skip forward/back a word with opt-arrow
 bindkey '[C' forward-word
 bindkey '[D' backward-word
+
+bindkey 'º' autosuggest-execute
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
