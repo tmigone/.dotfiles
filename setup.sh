@@ -33,7 +33,7 @@ brew install --cask ngrok
 
 # Install programming languages
 echo "- Installing programming languages"
-brew install python nvm node typescript
+brew install python nvm node typescript go
 
 # Install CLI tools
 echo "- Installing CLI tools"
