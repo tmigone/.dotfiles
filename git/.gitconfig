@@ -22,8 +22,8 @@
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     contrib = shortlog --summary --numbered
     amend = commit --amend
-    push-force = push --force-with-lease
-    push-upstream = "!f() { git push --set-upstream origin $(git branch --show-current); }; f"
+    pf = push --force-with-lease
+    pu = "!f() { git push --set-upstream origin $(git branch --show-current); }; f"
 
 [pull]
     rebase = false
