@@ -61,7 +61,7 @@ brew install --cask iterm2
 brew cleanup
 
 # npm global packages
-npm install -g serve node-gyp eslint mocha @vue/cli firebase-tools
+npm install -g serve node-gyp eslint mocha @vue/cli firebase-tools hardhat-shorthand
 
 # Create some dirs
 mkdir -p ~/Documents/git/balena
