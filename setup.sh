@@ -43,7 +43,7 @@ brew install --cask google-cloud-sdk
 # Install applications
 echo "- Installing applications"
 brew install pygments hadolint bfg solidity truffle
-brew install --cask google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoom steam insomnia dbeaver-community vlc fritzing arduino autodesk-fusion360 ultimaker-cura signal daisydisk ganache
+brew install --cask google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoom steam insomnia dbeaver-community vlc fritzing arduino autodesk-fusion360 ultimaker-cura signal daisydisk ganache notion
 open -a /usr/local/Caskroom/battle-net/latest/Battle.net-Setup.app
 brew tap homebrew/cask-drivers
 brew install --cask logitech-g-hub
