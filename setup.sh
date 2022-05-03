@@ -64,8 +64,8 @@ brew cleanup
 npm install -g serve node-gyp eslint mocha @vue/cli firebase-tools hardhat-shorthand
 
 # Create some dirs
-mkdir -p ~/Documents/git/balena
 mkdir -p ~/Documents/git/tmigone
+mkdir -p ~/Documents/git/thegraph
 
 # Git defaults
 wget -O ~/.gitconfig https://raw.githubusercontent.com/tmigone/dotfiles/master/git/.gitconfig
