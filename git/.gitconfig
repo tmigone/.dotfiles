@@ -11,6 +11,9 @@
 
 [includeIf "gitdir:~/Documents/git/balena/"]
     path = ~/Documents/git/balena/.gitconfig_balena
+    
+[includeIf "gitdir:~/Documents/git/thegraph/"]
+    path = ~/Documents/git/thegraph/.gitconfig_thegraph
 
 [alias]
     aa = add .
