@@ -12,18 +12,18 @@ echo "- Installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew update && brew upgrade && brew cleanup
 
-# Create a new SSH key
-if [ ! -f ~/.ssh/id_rsa ]; then
-  echo "SSH keys not present, creating new one..."
-  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "tomasmigone@gmail.com"
-fi
-
 # Set computer name
-COMPUTER_NAME=jarvis
+COMPUTER_NAME="$1"
 sudo scutil --set ComputerName "$COMPUTER_NAME" && \
 sudo scutil --set HostName "$COMPUTER_NAME" && \
 sudo scutil --set LocalHostName "$COMPUTER_NAME" && \
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+
+# Create a new SSH key
+if [ ! -f ~/.ssh/id_rsa ]; then
+  echo "SSH keys not present, creating new one..."
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "$COMPUTER_NAME@tmigone.com"
+fi
 
 # Install utilities
 echo "- Installing command line utilities"
