@@ -161,7 +161,7 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 
 # Select and execute suggestion with º, right key default is too far
-bindkey 'º' autosuggest-execute
+bindkey '`' autosuggest-execute
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
