@@ -52,6 +52,7 @@ mkdir -p ~/Documents/git/thegraph
 # Git defaults
 wget -O ~/.gitconfig https://raw.githubusercontent.com/tmigone/dotfiles/master/git/.gitconfig
 wget -O ~/Documents/git/balena/.gitconfig_balena https://raw.githubusercontent.com/tmigone/dotfiles/master/git/.gitconfig_balena
+# Add new SSH key into GitHub settings
 
 # Npm defaults
 npm config set init-author-name "Tomás Migone" --global
@@ -65,9 +66,6 @@ wget -O ~/.oh-my-zsh/custom/themes/tomi.zsh-theme https://raw.githubusercontent.
 
 # iTerm
 # Manually create profile and apply Novel theme colors
-
-
-
 
 # macOS Dock settings
 defaults write com.apple.dock tilesize -int 40
@@ -112,7 +110,6 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 # TODO: Find a way of setting these programatically
 ## System Preferences
 ### Keyboard
-# - Input Sources > Spanish-ISO
 # - Shortcuts
 #   + Keyboard > Move focus to next window: ⌘º
 #   + Use keyboard navigation to move focus between controls: Checked
