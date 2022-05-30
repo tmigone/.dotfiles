@@ -7,6 +7,10 @@ if ! (xcode-select -p 2>/dev/null 1>/dev/null); then
   xcode-select --install
 fi
 
+if [[ $(uname -p) == 'arm' ]]; then
+  softwareupdate --install-rosetta
+fi
+
 # Install homebrew
 echo "- Installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -24,7 +28,6 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   echo "SSH keys not present, creating new one..."
   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "$COMPUTER_NAME@tmigone.com"
 fi
-
 
 # Install brew packages from Brewfile
 brew bundle --file brew/Brewfile
@@ -55,10 +58,16 @@ npm config set init-author-name "Tomás Migone" --global
 npm config set init-author-email "tomasmigone@gmail.com" --global
 npm config set init-license "MIT" --global
 
-# zsh
+# zsh / oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 wget -O ~/.zshrc https://raw.githubusercontent.com/tmigone/dotfiles/master/zsh/.zshrc
 wget -O ~/.oh-my-zsh/custom/themes/tomi.zsh-theme https://raw.githubusercontent.com/tmigone/dotfiles/master/oh-my-zsh/tomi.zsh-theme
+
+# iTerm
+# Manually create profile and apply Novel theme colors
+
+
+
 
 # macOS Dock settings
 defaults write com.apple.dock tilesize -int 40

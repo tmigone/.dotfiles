@@ -1,8 +1,7 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
-brew "cask"
 tap "homebrew/core"
-tap "nektos/tap"
+brew "cask"
 
 # Programming languages
 brew "nvm"
@@ -10,7 +9,7 @@ brew "python@3.10"
 brew "emscripten"
 brew "go"
 brew "typescript"
-cask "java"
+# cask "java"
 
 # Command line utilities
 brew "htop"
