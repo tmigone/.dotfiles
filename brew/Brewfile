@@ -1,8 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 brew "cask"
-
-tap "homebrew/cask-drivers"
 tap "homebrew/core"
 tap "nektos/tap"
 
@@ -28,14 +26,14 @@ brew "yq"
 
 # Dev tools
 cask "visual-studio-code"
-cask "dbeaver-community"
+# cask "dbeaver-community"
 cask "docker"
 brew "hadolint"
 brew "vercel-cli"
 cask "multipass"
 cask "ngrok"
-cask "virtualbox"
-cask "vmware-fusion"
+# cask "virtualbox"
+# cask "vmware-fusion"
 
 # maker
 cask "arduino"
@@ -46,12 +44,14 @@ cask "insomnia"
 cask "ultimaker-cura"
 
 # balena
-brew "kubernetes-cli"
-brew "netlify-cli"
-brew "skopeo"
-brew "sox"
-cask "flowdock"
-cask "google-cloud-sdk"
+# brew "kubernetes-cli"
+brew "balena-cli"
+# brew "minikube"
+# brew "netlify-cli"
+# brew "skopeo"
+# brew "sox"
+# cask "flowdock"
+# cask "google-cloud-sdk"
 
 # ethereum
 brew "solidity"
@@ -59,12 +59,12 @@ brew "truffle"
 cask "ganache"
 
 # Apps
-brew "mas"
 cask "battle-net"
 cask "league-of-legends"
 cask "daisydisk"
 cask "discord"
 cask "google-chrome"
+tap "homebrew/cask-drivers"
 cask "logitech-g-hub"
 cask "notion"
 cask "signal"
@@ -73,10 +73,10 @@ cask "spotify"
 cask "steam"
 cask "zoom"
 cask "whatsapp"
-cask "transmission"
-cask "twitch"
-cask "vlc"
-mas "Paint Pad", id: 575447757
+# cask "transmission"
+# cask "twitch"
+# cask "vlc"
+brew "mas"
 
 # Terminal customizations
 cask "iterm2"
@@ -86,5 +86,5 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
 # Misc
-brew "ext4fuse"
-cask "macfuse"
+# brew "ext4fuse"
+# cask "macfuse"

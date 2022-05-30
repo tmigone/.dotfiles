@@ -25,37 +25,16 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "$COMPUTER_NAME@tmigone.com"
 fi
 
-# Install utilities
-echo "- Installing command line utilities"
-brew install git jq wget htop nmap tree telnet tldr
-# Check git being used is homebrew (catalina onwards seems ok)
-brew install --cask ngrok
 
-# Install programming languages
-echo "- Installing programming languages"
-brew install python nvm node typescript go solc
+# Install brew packages from Brewfile
+brew bundle --file brew/Brewfile
 
-# Install CLI tools
-echo "- Installing CLI tools"
-brew install kubernetes-cli minikube balena-cli now-cli netlify-cli exercism
-brew install --cask google-cloud-sdk
-
-# Install applications
-echo "- Installing applications"
-brew install pygments hadolint bfg solidity truffle
-brew install --cask google-chrome spotify slack discord visual-studio-code flowdock balenaetcher transmission docker whatsapp battle-net twitch zoom steam insomnia dbeaver-community vlc fritzing arduino autodesk-fusion360 ultimaker-cura signal daisydisk ganache notion
+# Post install
 open -a /usr/local/Caskroom/battle-net/latest/Battle.net-Setup.app
-brew tap homebrew/cask-drivers
-brew install --cask logitech-g-hub
 
-# Install App Store applications
-brew install mas
 echo "Sign in to the App store and hit enter..."
 read
 mas lucky "Paint Pad"
-
-brew install zsh-syntax-highlighting zsh-autosuggestions
-brew install --cask iterm2
 
 # Cleanup
 brew cleanup
