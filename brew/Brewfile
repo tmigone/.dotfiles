@@ -5,6 +5,7 @@ brew "cask"
 
 # Programming languages
 brew "node"
+brew "npm"
 brew "python@3.10"
 brew "emscripten"
 brew "go"
