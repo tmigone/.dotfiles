@@ -3,17 +3,17 @@
     email = tomasmigone@gmail.com
 
 [core]
-    excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore
 
 [pager]
     branch = false
     tag = false
 
-[includeIf "gitdir:~/Documents/git/balena/"]
-    path = ~/Documents/git/balena/.gitconfig_balena
+[includeIf "gitdir:~/git/balena/"]
+    path = .gitconfig-balena
     
-[includeIf "gitdir:~/Documents/git/thegraph/"]
-    path = ~/Documents/git/thegraph/.gitconfig_thegraph
+[includeIf "gitdir:~/git/thegraph/"]
+    path = .gitconfig-thegraph
 
 [alias]
     aa = add .

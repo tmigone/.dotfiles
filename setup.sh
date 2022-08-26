@@ -46,13 +46,9 @@ brew cleanup
 npm install -g serve node-gyp eslint mocha @vue/cli firebase-tools hardhat-shorthand
 
 # Create some dirs
-mkdir -p ~/Documents/git/tmigone
-mkdir -p ~/Documents/git/thegraph
-
-# Git defaults
-wget -O ~/.gitconfig https://raw.githubusercontent.com/tmigone/dotfiles/master/git/.gitconfig
-wget -O ~/Documents/git/balena/.gitconfig_balena https://raw.githubusercontent.com/tmigone/dotfiles/master/git/.gitconfig_balena
-# Add new SSH key into GitHub settings
+mkdir -p ~/git/tmigone
+mkdir -p ~/git/balena
+mkdir -p ~/git/thegraph
 
 # Npm defaults
 npm config set init-author-name "Tomás Migone" --global
@@ -61,11 +57,9 @@ npm config set init-license "MIT" --global
 
 # zsh / oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-wget -O ~/.zshrc https://raw.githubusercontent.com/tmigone/dotfiles/master/zsh/.zshrc
-wget -O ~/.oh-my-zsh/custom/themes/tomi.zsh-theme https://raw.githubusercontent.com/tmigone/dotfiles/master/oh-my-zsh/tomi.zsh-theme
 
 # iTerm
-# Manually create profile and apply Novel theme colors
+# Manually create profile and apply Novel theme colors - TODO: can we use stow for this?
 
 # macOS Dock settings
 defaults write com.apple.dock tilesize -int 40

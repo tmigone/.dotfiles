@@ -23,6 +23,8 @@ brew "tree"
 brew "wget"
 brew "yarn"
 brew "yq"
+brew "stow"
+brew "fzf"
 
 # Dev tools
 cask "visual-studio-code"

@@ -105,18 +105,22 @@ alias h='history'
 alias mkdir='mkdir -p'
 
 alias home='cd ~'
-alias dev='cd ~/Documents/git/tmigone'
-alias bal='cd ~/Documents/git/balena'
-alias tgp='cd ~/Documents/git/thegraph'
+alias dev='cd ~/git/tmigone'
+alias bal='cd ~/git/balena'
+alias tgp='cd ~/git/thegraph'
 alias cl='clear'
 alias g='google'
 alias gh="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
 alias code='code --reuse-window --add'
 alias cat='ccat'
 
-alias t='tmux'
+alias t='tmux-sessionizer'
+alias tt='tmux-sessionizer $(pwd)'
 alias tcfg='nano ~/.tmux.conf'
 alias tcat='cat ~/.tmux.conf'
+alias tl='tmux list-session'
+alias tk='tmux kill-session -t'
+alias tks='tmux kill-server'
 
 alias zcat='cat ~/.zshrc'
 alias zcfg='nano ~/.zshrc'
@@ -135,7 +139,7 @@ myip () {
   EN1=$(ifconfig en1 | grep inet | grep -v inet6 | awk '{print $2}')
   if [ $EN0 ]; then LOCAL_IP=$EN0; else LOCAL_IP=$EN1; fi
   echo 'Private IP: ' $LOCAL_IP
-  
+
   PRIVATE_IP=$(curl -s ifconfig.co)
   echo 'Public IP: ' $PRIVATE_IP
 }
@@ -165,3 +169,5 @@ bindkey '`' autosuggest-execute
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH="$PATH:$HOME/.local/bin"
