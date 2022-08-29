@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-DEBUG=false
+DEBUG=${DEBUG:-false}
+
 function debug() {
     if [[ $DEBUG == true ]]; then
         echo "$1"
@@ -10,7 +11,7 @@ function debug() {
 if [[ $# -eq 1 ]]; then
     project_dir=$1
 else
-    project_dir=$(find ~/git/tmigone ~/git/thegraph -mindepth 1 -maxdepth 1 -type d | fzf)
+    project_dir=$(find ~/git/tmigone ~/git/thegraph -mindepth 1 -maxdepth 1 ! -name .DS_Store | fzf)
 fi
 
 if [[ -z $project_dir ]]; then
@@ -35,7 +36,7 @@ debug "Path: $project_dir"
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     debug "Creating session $session_name and window $project_name"
-    tmux new-session -s $session_name -c $project_dir -n $project_name
+    tmux new-session -s $session_name -n $project_name -c $project_dir
     exit 0
 fi
 
@@ -46,11 +47,11 @@ if tmux has-session -t $session_name 2> /dev/null; then
         debug "Window exists $project_name"
     else
         debug "Creating window $project_name"
-        tmux new-window -n $project_name -t $session_name: -c $project_dir
+        tmux new-window -t $session_name: -n $project_name -c $project_dir
     fi
 else
     debug "Creating session $session_name and window $project_name"
-    tmux new-session -s $session_name -c $project_dir -n $project_name
+    tmux new-session -s $session_name -n $project_name -c $project_dir
     exit 0
 fi
 
@@ -59,5 +60,5 @@ if [[ -n $TMUX ]]; then
     tmux switch-client -t $session_name:$project_name
 else
     debug "Attaching to $session_name:$project_name"
-    tmux attach-session -t $session_name -c $project_dir
+    tmux attach-session -t $session_name:$project_name
 fi
