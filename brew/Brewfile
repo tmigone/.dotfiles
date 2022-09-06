@@ -89,6 +89,7 @@ brew "pygments"
 brew "tmux"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
+cask "karabiner-elements"
 
 # Misc
 # brew "ext4fuse"
