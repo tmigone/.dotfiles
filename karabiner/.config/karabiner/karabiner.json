@@ -48,11 +48,11 @@
                       ]
                   },
                   {
-                      "description": "hyper + a -> Chrome",
+                      "description": "hyper + d -> Chrome",
                       "manipulators": [
                           {
                               "from": {
-                                  "key_code": 4,
+                                  "key_code": 7,
                                   "modifiers": {
                                       "mandatory": [
                                           "left_shift",
@@ -72,7 +72,7 @@
                       ]
                   },
                   {
-                      "description": "hyper + s -> iTerm",
+                      "description": "hyper + s -> iTerm / tmux prefix",
                       "manipulators": [
                           {
                               "from": {
@@ -91,12 +91,50 @@
                                       "shell_command": "open '/Applications/iTerm.app'"
                                   }
                               ],
+                              "conditions": [
+                                {
+                                    "type": "frontmost_application_unless",
+                                    "bundle_identifiers": [
+                                        "com.googlecode.iterm2"
+                                    ]
+                                }
+                              ],
+                              "type": "basic"
+                          },
+                          {
+                              "from": {
+                                  "key_code": 22,
+                                  "modifiers": {
+                                      "mandatory": [
+                                          "left_shift",
+                                          "left_command",
+                                          "left_control",
+                                          "left_option"
+                                      ]
+                                  }
+                              },
+                              "to": [
+                                {
+                                    "key_code": 4,
+                                    "modifiers": [
+                                        "left_control"
+                                    ]
+                                }
+                              ],
+                              "conditions": [
+                                {
+                                    "type": "frontmost_application_if",
+                                    "bundle_identifiers": [
+                                        "com.googlecode.iterm2"
+                                    ]
+                                }
+                              ],
                               "type": "basic"
                           }
                       ]
                   },
                   {
-                      "description": "hyper + d -> VSCode",
+                      "description": "hyper + c -> VSCode",
                       "manipulators": [
                           {
                               "from": {
