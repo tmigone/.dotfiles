@@ -52,7 +52,7 @@
                       "manipulators": [
                           {
                               "from": {
-                                  "key_code": 7,
+                                  "key_code": "d",
                                   "modifiers": {
                                       "mandatory": [
                                           "left_shift",
@@ -76,7 +76,7 @@
                       "manipulators": [
                           {
                               "from": {
-                                  "key_code": 22,
+                                  "key_code": "s",
                                   "modifiers": {
                                       "mandatory": [
                                           "left_shift",
@@ -138,7 +138,7 @@
                       "manipulators": [
                           {
                               "from": {
-                                  "key_code": 6,
+                                  "key_code": "c",
                                   "modifiers": {
                                       "mandatory": [
                                           "left_shift",
@@ -162,7 +162,7 @@
                     "manipulators": [
                         {
                             "from": {
-                                "key_code": 26,
+                                "key_code": "w",
                                 "modifiers": {
                                     "mandatory": [
                                         "left_shift",
@@ -186,7 +186,7 @@
                     "manipulators": [
                         {
                             "from": {
-                                "key_code": 14,
+                                "key_code": "k",
                                 "modifiers": {
                                     "mandatory": [
                                         "left_shift",
@@ -210,7 +210,7 @@
                     "manipulators": [
                         {
                             "from": {
-                                "key_code": 17,
+                                "key_code": "n",
                                 "modifiers": {
                                     "mandatory": [
                                         "left_shift",
