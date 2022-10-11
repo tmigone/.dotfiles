@@ -113,6 +113,7 @@ alias g='google'
 alias gh="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
 alias code='code --reuse-window --add'
 alias cat='ccat'
+alias p='ping 1.1.1.1'
 
 alias t='tmux-sessionizer'
 alias tt='tmux-sessionizer $(pwd)'
