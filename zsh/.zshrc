@@ -161,6 +161,17 @@ dockersh () {
   fi
 }
 
+findport () {
+  local PORT=$1
+
+  if [[ -z "$PORT" ]]; then
+    echo "Usage: $0 PORT"
+    return 1
+  fi
+
+  lsof -nP -iTCP -sTCP:LISTEN | grep $1
+}
+
 # Skip forward/back a word with opt-arrow
 bindkey '[C' forward-word
 bindkey '[D' backward-word
