@@ -126,6 +126,8 @@ alias tks='tmux kill-server'
 alias zcat='cat ~/.zshrc'
 alias zcfg='nano ~/.zshrc'
 
+alias dotcfg='code ~/.dotfiles'
+
 # Docker
 alias docker-stop-all-containers='docker stop $(docker ps -a -q)'
 alias docker-clean-containers='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'

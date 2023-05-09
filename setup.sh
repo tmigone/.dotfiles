@@ -38,6 +38,7 @@ open -a $(brew --prefix)/Caskroom/league-of-legends/1.0/Install\ League\ of\ Leg
 echo "Sign in to the App store and hit enter..."
 read
 mas lucky "Paint Pad"
+mas lucky "Tailscale"
 
 # Cleanup
 brew cleanup

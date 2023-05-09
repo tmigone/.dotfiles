@@ -21,6 +21,7 @@
     cl = clone
     cs = commit -s
     ci = commit
+    cb = checkout -b
     st = status --porcelain -sb
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     contrib = shortlog --summary --numbered
