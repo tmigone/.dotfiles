@@ -38,6 +38,11 @@
                                       ]
                                   }
                               ],
+                              "to_if_alone": [
+                                {
+                                  "key_code": "escape"
+                                }
+                              ],
                               "type": "basic"
                           }
                       ]
@@ -60,6 +65,54 @@
                               "to": [
                                   {
                                       "shell_command": "open '/Applications/Google Chrome.app'"
+                                  }
+                              ],
+                              "type": "basic"
+                          }
+                      ]
+                  },
+                  {
+                      "description": "hyper + left arrow -> Yabai manage windo on left pane",
+                      "manipulators": [
+                          {
+                              "from": {
+                                  "key_code": "open_bracket",
+                                  "modifiers": {
+                                      "mandatory": [
+                                          "left_shift",
+                                          "left_command",
+                                          "left_control",
+                                          "left_option"
+                                      ]
+                                  }
+                              },
+                              "to": [
+                                  {
+                                      "shell_command": "export DEBUG=true; /bin/sh /Users/tomi/.dotfiles/yabai/.config/yabai/left-pane.sh"
+                                  }
+                              ],
+                              "type": "basic"
+                          }
+                      ]
+                  },
+                  {
+                      "description": "hyper + p -> Yabai unmanage window",
+                      "manipulators": [
+                          {
+                              "from": {
+                                  "key_code": "p",
+                                  "modifiers": {
+                                      "mandatory": [
+                                          "left_shift",
+                                          "left_command",
+                                          "left_control",
+                                          "left_option"
+                                      ]
+                                  }
+                              },
+                              "to": [
+                                  {
+                                      "shell_command": "export DEBUG=true; /bin/sh /Users/tomi/.dotfiles/yabai/.config/yabai/unmanage.sh"
                                   }
                               ],
                               "type": "basic"
