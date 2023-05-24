@@ -11,7 +11,9 @@ function debug() {
 if [[ $# -eq 1 ]]; then
     project_dir=$1
 else
-    project_dir=$(find ~/git/tmigone ~/git/thegraph -mindepth 1 -maxdepth 1 ! -name .DS_Store | fzf)
+    dirs=($(find ~/git/tmigone ~/git/thegraph -mindepth 1 -maxdepth 1 ! -name .DS_Store))
+    dirs+=("/Users/$(id -un)/.dotfiles")
+    project_dir=$(printf "%s\n" "${dirs[@]}" | fzf)
 fi
 
 if [[ -z $project_dir ]]; then
