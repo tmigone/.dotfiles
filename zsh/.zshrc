@@ -174,6 +174,53 @@ findport () {
   lsof -nP -iTCP -sTCP:LISTEN | grep $1
 }
 
+clean_history() {
+    local pattern=$1
+
+    # Exit if no pattern is provided
+    if [[ -z "$pattern" ]]; then
+        echo "Error: No pattern provided."
+        return 1
+    fi
+
+    # Use sed to delete matching lines in the history file
+    LC_CTYPE=C sed -i '' "/$pattern/Id" "$HISTFILE"
+
+    # Reload the history to apply changes
+    fc -R "$HISTFILE"
+}
+
+nuke_keys() {
+  clean_history "MNEMONIC"
+  clean_history "SEED"
+  clean_history "PRIVATE_KEY"
+}
+
+function auditMerge() {
+  local BASE_BRANCH=$BASE_BRANCH
+  local BRANCH=$1
+
+  git fetch origin $BRANCH
+  git checkout $BRANCH
+
+  git checkout $BASE_BRANCH
+  git merge $BRANCH --ff-only
+
+  GIT_PAGER= git log origin/$BASE_BRANCH..HEAD --oneline
+
+  # Prompt for confirmation to push
+  echo "Do you want to push the changes to origin/$BASE_BRANCH? (y/N): "
+  read answer
+
+  # Default to 'no' if input is empty or not 'y'
+  if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+    git push -u origin $BASE_BRANCH
+  else
+    echo "Push aborted."
+  fi
+}
+
+
 # Skip forward/back a word with opt-arrow
 bindkey '[C' forward-word
 bindkey '[D' backward-word
