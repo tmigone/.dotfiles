@@ -70,7 +70,7 @@ ZSH_DISABLE_COMPFIX=true
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize web-search docker docker-compose gitignore shrink-path)
+plugins=(git colorize web-search docker docker-compose gitignore)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,7 +111,7 @@ alias tgp='cd ~/git/thegraph'
 alias cl='clear'
 alias g='google'
 alias gh="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
-alias c='code --reuse-window --add .'
+alias c='cursor --reuse-window --add .'
 alias cat='ccat'
 alias p='ping 1.1.1.1'
 

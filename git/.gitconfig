@@ -1,6 +1,10 @@
 [user]
     name = Tomás Migone
     email = tomasmigone@gmail.com
+    signingkey = 972E3FA4797ED660
+
+[commit]
+    gpgSign = true
 
 [core]
     excludesfile = ~/.gitignore
