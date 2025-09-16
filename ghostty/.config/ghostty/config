@@ -1,0 +1,13 @@
+theme = Novel
+
+font-family = 2370 Nerd Font
+font-size = 18
+
+cursor-style-blink = true
+
+title = ghostty
+
+window-padding-color = background
+window-padding-balance = true
+window-padding-x = 5
+window-padding-y = 5

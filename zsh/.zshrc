@@ -126,7 +126,9 @@ alias tks='tmux kill-server'
 alias zcat='cat ~/.zshrc'
 alias zcfg='nano ~/.zshrc'
 
-alias dotcfg='code ~/.dotfiles'
+alias dotcfg='cursor ~/.dotfiles'
+
+alias pino='sed -u "s/^[^|]*| //" | pino-pretty'
 
 # Docker
 alias docker-stop-all-containers='docker stop $(docker ps -a -q)'
@@ -174,6 +176,25 @@ findport () {
   lsof -nP -iTCP -sTCP:LISTEN | grep $1
 }
 
+killport () {
+  local PORT=$1
+
+  if [[ -z "$PORT" ]]; then
+    echo "Usage: $0 PORT"
+    return 1
+  fi
+
+  local PID=$(lsof -nP -iTCP -sTCP:LISTEN | grep ":$PORT" | awk '{print $2}' | head -n1)
+
+  if [[ -z "$PID" ]]; then
+    echo "No process found listening on port $PORT"
+    return 1
+  fi
+
+  echo "Killing process $PID using port $PORT..."
+  kill -9 "$PID"
+}
+
 clean_history() {
     local pattern=$1
 
@@ -196,7 +217,7 @@ nuke_keys() {
   clean_history "PRIVATE_KEY"
 }
 
-function auditMerge() {
+function audit_merge() {
   local BASE_BRANCH=$BASE_BRANCH
   local BRANCH=$1
 
@@ -220,6 +241,55 @@ function auditMerge() {
   fi
 }
 
+function rebase_chain() {
+  if [ "$#" -lt 2 ]; then
+    echo "Usage: rebase_chain base_branch branch1 [branch2 ...]"
+    return 1
+  fi
+
+  local current_base=$1
+  shift
+
+  for branch in "$@"; do
+    echo -e "\n🔁 Rebasing \033[1m$branch\033[0m onto \033[1m$current_base\033[0m"
+
+    git checkout "$branch" || {
+      echo "❌ Failed to checkout $branch"
+      return 1
+    }
+
+    git rebase "$current_base" || {
+      echo "❌ Rebase of $branch onto $current_base failed."
+      echo "👉 Resolve conflicts, then run: git rebase --continue"
+      return 1
+    }
+
+    echo -e "\n📜 Commits in $branch since origin/$current_base:"
+    GIT_PAGER= git log origin/$current_base..HEAD --oneline
+
+    echo -n "✅ Rebase complete. Push $branch to origin? (y/N): "
+    read confirm_push
+    if [[ "$confirm_push" == "y" || "$confirm_push" == "Y" ]]; then
+      git push --force-with-lease origin "$branch" || {
+        echo "❌ Failed to push $branch"
+        return 1
+      }
+    else
+      echo "🚫 Skipped push for $branch"
+    fi
+
+    echo -n "➡️  Continue to next rebase? (Y/n): "
+    read confirm_next
+    if [[ "$confirm_next" == "n" || "$confirm_next" == "N" ]]; then
+      echo "🛑 Aborted at $branch"
+      return 0
+    fi
+
+    current_base=$branch
+  done
+
+  echo -e "\n🎉 Rebase chain complete."
+}
 
 # Skip forward/back a word with opt-arrow
 bindkey '[C' forward-word
@@ -232,3 +302,17 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH="$PATH:$HOME/.local/bin"
+
+# Set GPG TTY
+export GPG_TTY=$(tty)
+
+# pnpm
+export PNPM_HOME="/Users/tomi/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# https://github.com/tobi/try
+eval "$(~/.local/try.rb init ~/.tries)"
