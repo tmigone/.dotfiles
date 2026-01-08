@@ -16,7 +16,7 @@ fi
 brew update && brew upgrade
 echo "   ✓ Homebrew installed"
 
-brew bundle --file brew/Brewfile
+brew bundle --file "$SCRIPT_DIR/Brewfile"
 brew cleanup
 echo "   ✓ Brewfile packages installed"
 
