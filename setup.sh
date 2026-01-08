@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Install Command Line Tools
 echo "- Checking XCode Command Line Tools installation"
@@ -8,12 +9,12 @@ if ! (xcode-select -p 2>/dev/null 1>/dev/null); then
 fi
 
 # Apple Silicon support
-if [[ $(uname -p) == 'arm' ]]; then
-  softwareupdate --install-rosetta
+if [[ $(uname -p) == 'arm' ]] && [[ ! -f /Library/Apple/usr/share/rosetta/rosetta ]]; then
+  softwareupdate --install-rosetta --agree-to-license
 fi
 
 # Set computer name
-if [[ -n "$COMPUTER_NAME" ]]; then
+if [[ -n "$COMPUTER_NAME" ]] && [[ "$(scutil --get ComputerName)" != "$COMPUTER_NAME" ]]; then
   sudo scutil --set ComputerName "$COMPUTER_NAME"
   sudo scutil --set HostName "$COMPUTER_NAME"
   sudo scutil --set LocalHostName "$COMPUTER_NAME"
@@ -42,11 +43,11 @@ brew update && brew upgrade
 brew bundle --file brew/Brewfile
 
 # Post brew install
-eval "$(fnm env)" # Needed for rest of script
-fnm install 24 # Install Node.js 24
-corepack enable pnpm # Install pnpm
-rustup-init -y --no-modify-path --default-toolchain stable # Install Rust
-open -a $(brew --prefix)/Caskroom/battle-net/[version]/Battle.net-Setup.app
+eval "$(fnm env)"
+fnm list 2>/dev/null | grep -q "v24" || fnm install 24
+command -v pnpm &>/dev/null || corepack enable pnpm
+[[ -f ~/.cargo/bin/rustc ]] || rustup-init -y --no-modify-path --default-toolchain stable
+[[ ! -d "/Applications/Battle.net.app" ]] && open -a "$(brew --prefix)"/Caskroom/battle-net/*/Battle.net-Setup.app 2>/dev/null || true
 
 # Cleanup
 brew cleanup
@@ -60,7 +61,7 @@ npm config set init-author-email "tomasmigone@gmail.com" --global
 npm config set init-license "MIT" --global
 
 # oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+[[ -d ~/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # macOS dock settings
 defaults write com.apple.dock tilesize -int 40
