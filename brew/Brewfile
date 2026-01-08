@@ -33,42 +33,18 @@ brew "ripgrep"
 brew "fd"
 
 # Dev tools
-cask "visual-studio-code"
-# cask "dbeaver-community"
 cask "docker"
-brew "hadolint"
-brew "vercel-cli"
-cask "multipass"
 cask "ngrok"
-# cask "virtualbox"
-# cask "vmware-fusion"
 
 # maker
 cask "arduino"
 cask "autodesk-fusion360"
 cask "balenaetcher"
-cask "fritzing"
 cask "insomnia"
 cask "ultimaker-cura"
 
-# balena
-# brew "kubernetes-cli"
-brew "balena-cli"
-# brew "minikube"
-# brew "netlify-cli"
-# brew "skopeo"
-# brew "sox"
-# cask "flowdock"
-# cask "google-cloud-sdk"
-
-# ethereum
-brew "solidity"
-brew "truffle"
-cask "ganache"
-
 # Apps
 cask "battle-net"
-cask "league-of-legends"
 cask "daisydisk"
 cask "discord"
 cask "google-chrome"
@@ -82,21 +58,11 @@ cask "steam"
 cask "zoom"
 cask "whatsapp"
 cask "protonvpn"
-# cask "transmission"
-# cask "twitch"
-# cask "vlc"
-cask "linear-linear"
 brew "mas"
 
-
 # Terminal customizations
-cask "iterm2"
 brew "pygments"
 brew "tmux"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 cask "karabiner-elements"
-
-# Misc
-# brew "ext4fuse"
-# cask "macfuse"

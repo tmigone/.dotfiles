@@ -106,7 +106,6 @@ alias mkdir='mkdir -p'
 
 alias home='cd ~'
 alias dev='cd ~/git/tmigone'
-alias bal='cd ~/git/balena'
 alias tgp='cd ~/git/thegraph'
 alias cl='clear'
 alias g='google'
@@ -135,9 +134,6 @@ alias docker-stop-all-containers='docker stop $(docker ps -a -q)'
 alias docker-clean-containers='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
 alias docker-clean-images='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
 alias docker-clean='(docker-clean-containers || true && docker-clean-images) && docker volume prune --force'
-
-# balena
-alias balena-support='BALENARC_DATA_DIRECTORY=~/Documents/git/balena/support balena'
 
 myip () {
   EN0=$(ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}')

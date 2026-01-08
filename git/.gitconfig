@@ -12,9 +12,6 @@
 [pager]
     branch = false
     tag = false
-
-[includeIf "gitdir:~/git/balena/"]
-    path = .gitconfig-balena
     
 [includeIf "gitdir:~/git/thegraph/"]
     path = .gitconfig-thegraph

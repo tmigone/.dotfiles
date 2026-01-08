@@ -1,32 +1,43 @@
 #!/usr/bin/env bash
 
-# Install xcode command line tools
+# Install Command Line Tools
 echo "- Checking XCode Command Line Tools installation"
 if ! (xcode-select -p 2>/dev/null 1>/dev/null); then
   echo "XCode Command Line Tools not installed. Complete installation and re-run script."
   xcode-select --install
 fi
 
+# Apple Silicon support
 if [[ $(uname -p) == 'arm' ]]; then
   softwareupdate --install-rosetta
 fi
 
 # Install homebrew
-echo "- Installing Homebrew"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew update && brew upgrade && brew cleanup
+if ! command -v brew &>/dev/null; then
+  echo "- Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Add to PATH for Apple Silicon (needed for rest of script)
+  if [[ $(uname -p) == 'arm' ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi  
+fi
+
+brew analytics off
+brew update && brew upgrade
 
 # Set computer name
-COMPUTER_NAME="$1"
-sudo scutil --set ComputerName "$COMPUTER_NAME" && \
-sudo scutil --set HostName "$COMPUTER_NAME" && \
-sudo scutil --set LocalHostName "$COMPUTER_NAME" && \
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+if [[ -n "$COMPUTER_NAME" ]]; then
+  sudo scutil --set ComputerName "$COMPUTER_NAME"
+  sudo scutil --set HostName "$COMPUTER_NAME"
+  sudo scutil --set LocalHostName "$COMPUTER_NAME"
+  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+fi
 
-# Create a new SSH key
-if [ ! -f ~/.ssh/id_rsa ]; then
-  echo "SSH keys not present, creating new one..."
-  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "$COMPUTER_NAME@tmigone.com"
+# Create SSH key
+if [[ -n "$COMPUTER_NAME" ]] && [[ ! -f ~/.ssh/id_ed25519 ]]; then
+  echo "SSH key not present, creating new one..."
+  ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N "" -C "$COMPUTER_NAME@tmigone.com"
 fi
 
 # Install brew packages from Brewfile
@@ -48,7 +59,6 @@ npm install -g serve node-gyp eslint mocha @vue/cli firebase-tools hardhat-short
 
 # Create some dirs
 mkdir -p ~/git/tmigone
-mkdir -p ~/git/balena
 mkdir -p ~/git/thegraph
 
 # Npm defaults
