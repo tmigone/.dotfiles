@@ -297,20 +297,18 @@ bindkey '`' autosuggest-execute
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Path extensions
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 
 # Set GPG TTY
 export GPG_TTY=$(tty)
 
-# pnpm
-export PNPM_HOME="/Users/tomi/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+# Homebrew configuration
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_ENV_HINTS=1
 
 # https://github.com/tobi/try
 eval "$(~/.local/try.rb init ~/.tries)"
-
 eval "$(direnv hook zsh)"
+eval "$(fnm env)"

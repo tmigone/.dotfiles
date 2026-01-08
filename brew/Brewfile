@@ -1,68 +1,64 @@
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
-brew "cask"
-
 # Programming languages
-brew "node"
-brew "npm"
-brew "python@3.10"
-brew "emscripten"
-brew "go"
-brew "typescript"
-# cask "java"
+brew "fnm"
+brew "oven-sh/bun/bun"
+brew "rustup"
 
 # Command line utilities
-brew "htop"
-brew "jq"
-brew "nmap"
-brew "git"
-brew "telnet"
+brew "fd"
+brew "fzf"
+brew "gitmux"
+brew "ripgrep"
+brew "sshs"
+brew "stow"
 brew "tldr"
 brew "tree"
 brew "wget"
-brew "yarn"
-brew "yq"
-brew "stow"
-brew "fzf"
-brew "sshs"
-brew "carapace"
-brew "gitmux"
-brew "lazygit"
-brew "ripgrep"
-brew "fd"
 
-# Dev tools
-cask "docker"
-cask "ngrok"
-
-# maker
-cask "arduino"
-cask "autodesk-fusion360"
-cask "balenaetcher"
-cask "insomnia"
-cask "ultimaker-cura"
-
-# Apps
-cask "battle-net"
+# OS tools
 cask "daisydisk"
-cask "discord"
-cask "google-chrome"
-tap "homebrew/cask-drivers"
-cask "logitech-g-hub"
-cask "notion"
-cask "signal"
-cask "slack"
-cask "spotify"
-cask "steam"
-cask "zoom"
-cask "whatsapp"
+cask "karabiner-elements"
+cask "logi-options+"
 cask "protonvpn"
-brew "mas"
+cask "rectangle"
+cask "tailscale-app"
 
-# Terminal customizations
+# Terminal
 brew "pygments"
 brew "tmux"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
-cask "karabiner-elements"
+cask "ghostty"
+
+# Dev tools
+brew "just"
+brew "kubernetes-cli"
+brew "neovim"
+cask "claude-code"
+cask "cursor"   
+cask "docker"
+cask "gcloud-cli"
+cask "insomnia"
+cask "ngrok"
+cask "pgadmin4"
+
+# Maker
+brew "balena-cli"
+cask "arduino-ide"
+cask "autodesk-fusion"
+cask "balenaetcher"
+cask "ultimaker-cura"
+
+# Gaming
+cask "battle-net"
+cask "steam"
+
+# Apps
+cask "beeper"
+cask "chatgpt"
+cask "discord"
+cask "google-chrome"
+cask "notion"
+cask "paintbrush"
+cask "slack"
+cask "spotify"
+cask "zoom"

@@ -12,20 +12,6 @@ if [[ $(uname -p) == 'arm' ]]; then
   softwareupdate --install-rosetta
 fi
 
-# Install homebrew
-if ! command -v brew &>/dev/null; then
-  echo "- Installing Homebrew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-  # Add to PATH for Apple Silicon (needed for rest of script)
-  if [[ $(uname -p) == 'arm' ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  fi  
-fi
-
-brew analytics off
-brew update && brew upgrade
-
 # Set computer name
 if [[ -n "$COMPUTER_NAME" ]]; then
   sudo scutil --set ComputerName "$COMPUTER_NAME"
@@ -40,22 +26,29 @@ if [[ -n "$COMPUTER_NAME" ]] && [[ ! -f ~/.ssh/id_ed25519 ]]; then
   ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N "" -C "$COMPUTER_NAME@tmigone.com"
 fi
 
+# Install homebrew
+if ! command -v brew &>/dev/null; then
+  echo "- Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Add to PATH for Apple Silicon (needed for rest of script)
+  if [[ $(uname -p) == 'arm' ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi  
+fi
+brew update && brew upgrade
+
 # Install brew packages from Brewfile
 brew bundle --file brew/Brewfile
 
-# Post install
-open -a $(brew --prefix)/Caskroom/battle-net/latest/Battle.net-Setup.app
-open -a $(brew --prefix)/Caskroom/league-of-legends/1.0/Install\ League\ of\ Legends\ na.app
-echo "Sign in to the App store and hit enter..."
-read
-mas lucky "Paint Pad"
-mas lucky "Tailscale"
+# Post brew install
+fnm install 24 # Install Node.js 24
+corepack enable pnpm # Install pnpm
+rustup-init --no-modify-path --default-toolchain stable # Install Rust
+open -a $(brew --prefix)/Caskroom/battle-net/[version]/Battle.net-Setup.app
 
 # Cleanup
 brew cleanup
-
-# npm global packages
-npm install -g serve node-gyp eslint mocha @vue/cli firebase-tools hardhat-shorthand
 
 # Create some dirs
 mkdir -p ~/git/tmigone
@@ -66,7 +59,7 @@ npm config set init-author-name "Tomás Migone" --global
 npm config set init-author-email "tomasmigone@gmail.com" --global
 npm config set init-license "MIT" --global
 
-# zsh / oh-my-zsh
+# oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # iTerm
