@@ -26,6 +26,7 @@ cask "tailscale-app"
 # Terminal
 brew "pygments"
 brew "tmux"
+brew "tpm"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 cask "ghostty"
