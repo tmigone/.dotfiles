@@ -48,3 +48,11 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 echo "   ✓ oh-my-zsh"
+
+# try - https://github.com/tobi/try
+if [[ ! -f ~/.local/try.rb ]]; then
+  echo "   ⏳ Installing try..."
+  curl -fsSL https://raw.githubusercontent.com/tobi/try/main/try.rb -o ~/.local/try.rb
+  chmod +x ~/.local/try.rb
+fi
+echo "   ✓ try"

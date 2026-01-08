@@ -1,110 +1,30 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# =============================================================================
+# oh-my-zsh
+# =============================================================================
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/tomi/.oh-my-zsh"
+# Installation path
+ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# Theme (custom theme in ~/.oh-my-zsh/custom/themes/)
 ZSH_THEME="tomi"
 
+# Disable insecure directory warnings (common with homebrew)
 ZSH_DISABLE_COMPFIX=true
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Plugins - keep lean, too many slow down shell startup
 plugins=(git colorize web-search docker docker-compose gitignore)
 
+# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='/usr/bin/nano'
-else
-  export EDITOR='/usr/bin/nano'
-fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# =============================================================================
+# Aliases
+# =============================================================================
 
 alias ls='ls -GFh'
 alias h='history'
 alias mkdir='mkdir -p'
 
-alias home='cd ~'
 alias dev='cd ~/git/tmigone'
 alias tgp='cd ~/git/thegraph'
 alias cl='clear'
@@ -116,134 +36,142 @@ alias p='ping 1.1.1.1'
 
 alias t='tmux-sessionizer'
 alias tt='tmux-sessionizer $(pwd)'
-alias tcfg='nano ~/.tmux.conf'
+alias tcfg='nvim ~/.tmux.conf'
 alias tcat='cat ~/.tmux.conf'
-alias tl='tmux list-session'
+alias tl='tmux list-sessions'
 alias tk='tmux kill-session -t'
 alias tks='tmux kill-server'
 
 alias zcat='cat ~/.zshrc'
-alias zcfg='nano ~/.zshrc'
+alias zcfg='nvim ~/.zshrc'
 
 alias dotcfg='cursor ~/.dotfiles'
 
 alias pino='sed -u "s/^[^|]*| //" | pino-pretty'
 
-# Docker
 alias docker-stop-all-containers='docker stop $(docker ps -a -q)'
 alias docker-clean-containers='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
 alias docker-clean-images='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
 alias docker-clean='(docker-clean-containers || true && docker-clean-images) && docker volume prune --force'
 
-myip () {
-  EN0=$(ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}')
-  EN1=$(ifconfig en1 | grep inet | grep -v inet6 | awk '{print $2}')
-  if [ $EN0 ]; then LOCAL_IP=$EN0; else LOCAL_IP=$EN1; fi
-  echo 'Private IP: ' $LOCAL_IP
+# =============================================================================
+# Functions
+# =============================================================================
 
-  PRIVATE_IP=$(curl -s ifconfig.co)
-  echo 'Public IP: ' $PRIVATE_IP
+# Show private and public IP addresses
+function myip() {
+  local en0=$(ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}')
+  local en1=$(ifconfig en1 | grep inet | grep -v inet6 | awk '{print $2}')
+  local local_ip="${en0:-$en1}"
+  echo "Private IP: $local_ip"
+
+  local public_ip=$(curl -s ifconfig.co)
+  echo "Public IP: $public_ip"
 }
 
-dockersh () {
-  local CONTAINER_ID=$1
-  if [[ -z "$CONTAINER_ID" ]]; then
-    echo "Usage: $0 CONTAINER_ID"
+# Open a shell inside a docker container (tries bash, falls back to ash)
+function dockersh() {
+  local container_id="$1"
+  if [[ -z "$container_id" ]]; then
+    echo "Usage: dockersh <container_id>"
     return 1
   fi
 
-  # try bash first (debian/ubuntu/fedora)
-  docker exec -it "$CONTAINER_ID" /bin/bash
+  docker exec -it "$container_id" /bin/bash
 
-  # if that fails, try ash (alpine)
   if [[ $? -ne 0 ]]; then
-    docker exec -it "$CONTAINER_ID" /bin/ash
+    docker exec -it "$container_id" /bin/ash
   fi
 }
 
-findport () {
-  local PORT=$1
+# Find process listening on a port
+function findport() {
+  local port="$1"
 
-  if [[ -z "$PORT" ]]; then
-    echo "Usage: $0 PORT"
+  if [[ -z "$port" ]]; then
+    echo "Usage: findport <port>"
     return 1
   fi
 
-  lsof -nP -iTCP -sTCP:LISTEN | grep $1
+  lsof -nP -iTCP -sTCP:LISTEN | grep ":$port"
 }
 
-killport () {
-  local PORT=$1
+# Kill process listening on a port
+function killport() {
+  local port="$1"
 
-  if [[ -z "$PORT" ]]; then
-    echo "Usage: $0 PORT"
+  if [[ -z "$port" ]]; then
+    echo "Usage: killport <port>"
     return 1
   fi
 
-  local PID=$(lsof -nP -iTCP -sTCP:LISTEN | grep ":$PORT" | awk '{print $2}' | head -n1)
+  local pid=$(lsof -nP -iTCP -sTCP:LISTEN | grep ":$port" | awk '{print $2}' | head -n1)
 
-  if [[ -z "$PID" ]]; then
-    echo "No process found listening on port $PORT"
+  if [[ -z "$pid" ]]; then
+    echo "No process found listening on port $port"
     return 1
   fi
 
-  echo "Killing process $PID using port $PORT..."
-  kill -9 "$PID"
+  echo "Killing process $pid using port $port..."
+  kill -9 "$pid"
 }
 
-clean_history() {
-    local pattern=$1
+# Remove lines matching a pattern from shell history
+function clean_history() {
+  local pattern="$1"
 
-    # Exit if no pattern is provided
-    if [[ -z "$pattern" ]]; then
-        echo "Error: No pattern provided."
-        return 1
-    fi
+  if [[ -z "$pattern" ]]; then
+    echo "Usage: clean_history <pattern>"
+    return 1
+  fi
 
-    # Use sed to delete matching lines in the history file
-    LC_CTYPE=C sed -i '' "/$pattern/Id" "$HISTFILE"
-
-    # Reload the history to apply changes
-    fc -R "$HISTFILE"
+  LC_CTYPE=C sed -i '' "/$pattern/Id" "$HISTFILE"
+  fc -R "$HISTFILE"
 }
 
-nuke_keys() {
+# Remove crypto keys from shell history
+function nuke_keys() {
   clean_history "MNEMONIC"
   clean_history "SEED"
   clean_history "PRIVATE_KEY"
 }
 
+# Fast-forward merge an audited branch into base branch
 function audit_merge() {
-  local BASE_BRANCH=$BASE_BRANCH
-  local BRANCH=$1
+  local base_branch="$1"
+  local branch="$2"
 
-  git fetch origin $BRANCH
-  git checkout $BRANCH
+  if [[ -z "$base_branch" || -z "$branch" ]]; then
+    echo "Usage: audit_merge <base_branch> <branch>"
+    return 1
+  fi
 
-  git checkout $BASE_BRANCH
-  git merge $BRANCH --ff-only
+  git fetch origin "$branch"
+  git checkout "$branch"
 
-  GIT_PAGER= git log origin/$BASE_BRANCH..HEAD --oneline
+  git checkout "$base_branch"
+  git merge "$branch" --ff-only
 
-  # Prompt for confirmation to push
-  echo "Do you want to push the changes to origin/$BASE_BRANCH? (y/N): "
+  GIT_PAGER= git log "origin/$base_branch..HEAD" --oneline
+
+  echo "Do you want to push the changes to origin/$base_branch? (y/N): "
   read answer
 
-  # Default to 'no' if input is empty or not 'y'
   if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
-    git push -u origin $BASE_BRANCH
+    git push -u origin "$base_branch"
   else
     echo "Push aborted."
   fi
 }
 
+# Rebase a chain of branches sequentially
 function rebase_chain() {
-  if [ "$#" -lt 2 ]; then
-    echo "Usage: rebase_chain base_branch branch1 [branch2 ...]"
+  if [[ "$#" -lt 2 ]]; then
+    echo "Usage: rebase_chain <base_branch> <branch1> [branch2 ...]"
     return 1
   fi
 
-  local current_base=$1
+  local current_base="$1"
   shift
 
   for branch in "$@"; do
@@ -261,7 +189,7 @@ function rebase_chain() {
     }
 
     echo -e "\n📜 Commits in $branch since origin/$current_base:"
-    GIT_PAGER= git log origin/$current_base..HEAD --oneline
+    GIT_PAGER= git log "origin/$current_base..HEAD" --oneline
 
     echo -n "✅ Rebase complete. Push $branch to origin? (y/N): "
     read confirm_push
@@ -281,34 +209,32 @@ function rebase_chain() {
       return 0
     fi
 
-    current_base=$branch
+    current_base="$branch"
   done
 
   echo -e "\n🎉 Rebase chain complete."
 }
 
-# Skip forward/back a word with opt-arrow
+# =============================================================================
+# zsh
+# =============================================================================
+
+# plugin: zsh-autosuggestions - installed via brew
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# plugin: zsh-syntax-highlighting - installed via brew
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# keybinding: opt-arrow to skip words
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
-# Select and execute suggestion with º, right key default is too far
+# keybinding: backtick to execute autosuggestion
 bindkey '`' autosuggest-execute
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# =============================================================================
+# Tools
+# =============================================================================
 
-# Path extensions
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$PATH:$HOME/.local/bin"
-
-# Set GPG TTY
-export GPG_TTY=$(tty)
-
-# Homebrew configuration
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_NO_ENV_HINTS=1
-
-# https://github.com/tobi/try
+# try - quickly test code snippets (https://github.com/tobi/try)
 eval "$(~/.local/try.rb init ~/.tries)"
-eval "$(direnv hook zsh)"
-eval "$(fnm env)"
