@@ -1,7 +1,7 @@
 [user]
     name = Tomás Migone
     email = tomasmigone@gmail.com
-	signingkey = 9E8C3611387A6EB5
+    signingkey = 9E8C3611387A6EB5
 
 [commit]
     gpgSign = true
@@ -12,7 +12,7 @@
 [pager]
     branch = false
     tag = false
-    
+
 [includeIf "gitdir:~/git/thegraph/"]
     path = .gitconfig-thegraph
 
