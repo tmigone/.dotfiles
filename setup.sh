@@ -6,44 +6,51 @@ set -euo pipefail
 # =============================================================================
 
 setup_system() {
-  echo "==> Setting up system..."
+  echo "🖥️  Setting up system..."
 
   # Install Command Line Tools
-  echo "- Checking XCode Command Line Tools installation"
   if ! (xcode-select -p 2>/dev/null 1>/dev/null); then
-    echo "XCode Command Line Tools not installed. Complete installation and re-run script."
+    echo "   ⚠️  XCode Command Line Tools not installed. Complete installation and re-run script."
     xcode-select --install
+    exit 1
   fi
+  echo "   ✓ XCode Command Line Tools"
 
   # Apple Silicon support
   if [[ $(uname -p) == 'arm' ]] && [[ ! -f /Library/Apple/usr/share/rosetta/rosetta ]]; then
+    echo "   ⏳ Installing Rosetta..."
     softwareupdate --install-rosetta --agree-to-license
   fi
+  echo "   ✓ Rosetta"
 
   # Set computer name
   if [[ -n "${COMPUTER_NAME:-}" ]] && [[ "$(scutil --get ComputerName)" != "$COMPUTER_NAME" ]]; then
+    echo "   ⏳ Setting computer name to $COMPUTER_NAME..."
     sudo scutil --set ComputerName "$COMPUTER_NAME"
     sudo scutil --set HostName "$COMPUTER_NAME"
     sudo scutil --set LocalHostName "$COMPUTER_NAME"
     sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
   fi
+  echo "   ✓ Computer name"
 
   # Create SSH key
   if [[ -n "${COMPUTER_NAME:-}" ]] && [[ ! -f ~/.ssh/id_ed25519 ]]; then
-    echo "SSH key not present, creating new one..."
+    echo "   ⏳ Creating SSH key..."
     ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N "" -C "$COMPUTER_NAME@tmigone.com"
   fi
+  echo "   ✓ SSH key"
 
   # Create workspace dirs
   mkdir -p ~/git/{tmigone,thegraph}
+  echo "   ✓ Workspace directories"
 }
 
 setup_packages() {
-  echo "==> Setting up packages..."
+  echo "📦 Setting up packages..."
 
   # Install homebrew
   if ! command -v brew &>/dev/null; then
-    echo "- Installing Homebrew"
+    echo "   ⏳ Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add to PATH for Apple Silicon (needed for rest of script)
@@ -52,26 +59,46 @@ setup_packages() {
     fi
   fi
   brew update && brew upgrade
+  echo "   ✓ Homebrew installed"
 
-  # Install brew packages from Brewfile
+
   brew bundle --file brew/Brewfile
+  brew cleanup
+  echo "   ✓ Brewfile packages installed"
 
   # Post brew install
   eval "$(fnm env)"
-  fnm list 2>/dev/null | grep -q "v24" || fnm install 24
-  command -v pnpm &>/dev/null || corepack enable pnpm
-  [[ -f ~/.cargo/bin/rustc ]] || rustup-init -y --no-modify-path --default-toolchain stable
+  if ! fnm list 2>/dev/null | grep -q "v24"; then
+    echo "   ⏳ Installing Node.js 24..."
+    fnm install 24
+  fi
+  echo "   ✓ Node.js"
+
+  if ! command -v pnpm &>/dev/null; then
+    echo "   ⏳ Enabling pnpm..."
+    corepack enable pnpm
+  fi
+  echo "   ✓ pnpm"
+
+  if [[ ! -f ~/.cargo/bin/rustc ]]; then
+    echo "   ⏳ Installing Rust..."
+    rustup-init -y --no-modify-path --default-toolchain stable
+  fi
+  echo "   ✓ Rust"
+
   [[ ! -d "/Applications/Battle.net.app" ]] && open -a "$(brew --prefix)"/Caskroom/battle-net/*/Battle.net-Setup.app 2>/dev/null || true
 
-  # Cleanup
-  brew cleanup
 
   # oh-my-zsh
-  [[ -d ~/.oh-my-zsh ]] || sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  if [[ ! -d ~/.oh-my-zsh ]]; then
+    echo "   ⏳ Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  fi
+  echo "   ✓ oh-my-zsh"
 }
 
 setup_dotfiles() {
-  echo "==> Setting up dotfiles..."
+  echo "📁 Setting up dotfiles..."
 
   # Remove potential conflicts
   rm -f ~/.config/karabiner/karabiner.json
@@ -79,31 +106,36 @@ setup_dotfiles() {
   # Stow packages
   local packages=(tmux gitmux zsh oh-my-zsh git bin karabiner ghostty npm)
   for pkg in "${packages[@]}"; do
-    echo "- Stowing $pkg"
     stow --restow "$pkg"
+    echo "   ✓ $pkg"
   done
 }
 
 setup_macos() {
-  echo "==> Setting up macOS preferences..."
+  echo "⚙️  Setting up macOS preferences..."
 
   # Disable cursor shake (requires logout)
   defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
+  echo "   ✓ Disable cursor shake"
 
   # Enable tap to click
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+  echo "   ✓ Tap to click"
 
   # Enable keyboard navigation between controls
   defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
+  echo "   ✓ Keyboard navigation"
 
   # Always use tabs
   defaults write NSGlobalDomain AppleWindowTabbingMode -string 'always'
+  echo "   ✓ Window tabbing"
 
-  echo "Note: 'Disable cursor shake' requires logout to take effect"
+  echo ""
+  echo "   ⚠️  Note: 'Disable cursor shake' requires logout to take effect"
 }
 
 setup_dock() {
-  echo "==> Setting up dock..."
+  echo "🚀 Setting up dock..."
 
   # Dock appearance
   defaults write com.apple.dock tilesize -int 40
@@ -113,6 +145,7 @@ setup_dock() {
   defaults write com.apple.dock mineffect -string 'scale'
   defaults write com.apple.dock minimize-to-application -bool true
   defaults write com.apple.dock show-recents -bool false
+  echo "   ✓ Dock appearance"
 
   # Dock apps
   dockutil --remove all --no-restart
@@ -128,6 +161,7 @@ setup_dock() {
   dockutil --add /Applications/Cursor.app --no-restart
   dockutil --add /Applications/ChatGPT.app --no-restart
   killall Dock
+  echo "   ✓ Dock apps"
 }
 
 # =============================================================================
@@ -167,11 +201,12 @@ else
     if [[ " $available_functions " =~ " $func " ]]; then
       "setup_$func"
     else
-      echo "Unknown function: $func"
+      echo "❌ Unknown function: $func"
       echo "Available: $available_functions"
       exit 1
     fi
   done
 fi
 
-echo "==> Done!"
+echo ""
+echo "✅ Done!"
