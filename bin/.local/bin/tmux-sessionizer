@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 DEBUG=${DEBUG:-false}
+SESSIONIZER_DIRS=${SESSIONIZER_DIRS:-"$HOME/git/tmigone $HOME/git/thegraph"}
+SESSIONIZER_DOTFILES=${SESSIONIZER_DOTFILES:-"$HOME/.dotfiles"}
 
 function debug() {
     if [[ $DEBUG == true ]]; then
@@ -11,8 +13,8 @@ function debug() {
 if [[ $# -eq 1 ]]; then
     project_dir=$1
 else
-    dirs=($(find ~/git/tmigone ~/git/thegraph -mindepth 1 -maxdepth 1 ! -name .DS_Store))
-    dirs+=("/Users/$(id -un)/.dotfiles")
+    mapfile -t dirs < <(find $SESSIONIZER_DIRS -mindepth 1 -maxdepth 1 ! -name .DS_Store 2>/dev/null)
+    dirs+=("$SESSIONIZER_DOTFILES")
     project_dir=$(printf "%s\n" "${dirs[@]}" | fzf)
 fi
 
@@ -26,8 +28,13 @@ session_name="${project_root##*/}"
 
 tmux_running=$(pgrep tmux)
 
-if [[ $session_name != "tmigone" ]] && [[ $session_name != "thegraph" ]]; then
-    session_name=$(id -un)
+# Check if session_name matches any SESSIONIZER_DIRS basename
+valid_sessions=" "
+for dir in $SESSIONIZER_DIRS; do
+    valid_sessions+="$(basename "$dir") "
+done
+if [[ ! "$valid_sessions" =~ " $session_name " ]]; then
+    session_name=$USER
 fi
 
 debug "tmux running: $tmux_running"
@@ -38,29 +45,29 @@ debug "Path: $project_dir"
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     debug "Creating session $session_name and window $project_name"
-    tmux new-session -s $session_name -n $project_name -c $project_dir
+    tmux new-session -s "$session_name" -n "$project_name" -c "$project_dir"
     exit 0
 fi
 
-if tmux has-session -t $session_name 2> /dev/null; then
+if tmux has-session -t "$session_name" 2> /dev/null; then
     debug "Session exists $session_name"
 
-    if tmux has-session -t $session_name:$project_name 2> /dev/null; then
+    if tmux has-session -t "$session_name:$project_name" 2> /dev/null; then
         debug "Window exists $project_name"
     else
         debug "Creating window $project_name"
-        tmux new-window -t $session_name: -n $project_name -c $project_dir
+        tmux new-window -t "$session_name:" -n "$project_name" -c "$project_dir"
     fi
 else
     debug "Creating session $session_name and window $project_name"
-    tmux new-session -s $session_name -n $project_name -c $project_dir
+    tmux new-session -s "$session_name" -n "$project_name" -c "$project_dir"
     exit 0
 fi
 
 if [[ -n $TMUX ]]; then
     debug "Switching to $session_name:$project_name"
-    tmux switch-client -t $session_name:$project_name
+    tmux switch-client -t "$session_name:$project_name"
 else
     debug "Attaching to $session_name:$project_name"
-    tmux attach-session -t $session_name:$project_name
+    tmux attach-session -t "$session_name:$project_name"
 fi
