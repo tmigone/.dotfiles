@@ -18,6 +18,30 @@ plugins=(git colorize web-search docker docker-compose gitignore)
 source $ZSH/oh-my-zsh.sh
 
 # =============================================================================
+# zsh
+# =============================================================================
+
+# plugin: zsh-autosuggestions - installed via brew
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# plugin: zsh-syntax-highlighting - installed via brew
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# keybinding: opt-arrow to skip words
+bindkey '[C' forward-word
+bindkey '[D' backward-word
+
+# keybinding: backtick to execute autosuggestion
+bindkey '`' autosuggest-execute
+
+# =============================================================================
+# Tools
+# =============================================================================
+
+# try - quickly test code snippets (https://github.com/tobi/try)
+eval "$(~/.local/try.rb init ~/.tries)"
+
+# =============================================================================
 # Aliases
 # =============================================================================
 
@@ -214,27 +238,3 @@ function rebase_chain() {
 
   echo -e "\n🎉 Rebase chain complete."
 }
-
-# =============================================================================
-# zsh
-# =============================================================================
-
-# plugin: zsh-autosuggestions - installed via brew
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# plugin: zsh-syntax-highlighting - installed via brew
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# keybinding: opt-arrow to skip words
-bindkey '[C' forward-word
-bindkey '[D' backward-word
-
-# keybinding: backtick to execute autosuggestion
-bindkey '`' autosuggest-execute
-
-# =============================================================================
-# Tools
-# =============================================================================
-
-# try - quickly test code snippets (https://github.com/tobi/try)
-eval "$(~/.local/try.rb init ~/.tries)"
