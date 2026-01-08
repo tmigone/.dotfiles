@@ -25,6 +25,12 @@ brew "yarn"
 brew "yq"
 brew "stow"
 brew "fzf"
+brew "sshs"
+brew "carapace"
+brew "gitmux"
+brew "lazygit"
+brew "ripgrep"
+brew "fd"
 
 # Dev tools
 cask "visual-studio-code"

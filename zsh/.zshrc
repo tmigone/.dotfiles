@@ -316,3 +316,5 @@ esac
 
 # https://github.com/tobi/try
 eval "$(~/.local/try.rb init ~/.tries)"
+
+eval "$(direnv hook zsh)"

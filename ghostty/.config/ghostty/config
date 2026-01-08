@@ -1,11 +1,10 @@
-theme = Novel
+title = ghostty
 
+theme = dark:Catppuccin Frappe,light:Catppuccin Latte
 font-family = 2370 Nerd Font
 font-size = 18
 
 cursor-style-blink = true
-
-title = ghostty
 
 window-padding-color = background
 window-padding-balance = true

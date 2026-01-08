@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-STOW_PACKAGES=('tmux' 'zsh' 'oh-my-zsh' 'git' 'bin' 'karabiner' 'ghostty')
+STOW_PACKAGES=('tmux' 'gitmux' 'zsh' 'oh-my-zsh' 'git' 'bin' 'karabiner' 'ghostty')
 
 # Ensure no stow conflicts
 rm ~/.config/karabiner/karabiner.json
