@@ -8,7 +8,7 @@ BACKUP_DIR="$HOME/.dotfiles.bak/$(date +%Y%m%d-%H%M%S)"
 # Backup conflicting files before stowing
 backup_conflicts() {
   local pkg="$1"
-  local pkg_dir="$SCRIPT_DIR/../$pkg"
+  local pkg_dir="$SCRIPT_DIR/$pkg"
 
   while IFS= read -r file; do
     local rel_path="${file#$pkg_dir/}"
