@@ -14,11 +14,17 @@ backup_conflicts() {
     local rel_path="${file#$pkg_dir/}"
     local target="$HOME/$rel_path"
 
-    if [[ -e "$target" && ! -L "$target" ]]; then
-      local backup_path="$BACKUP_DIR/$rel_path"
-      mkdir -p "$(dirname "$backup_path")"
-      mv "$target" "$backup_path"
-      echo "   ⚠️  Backed up: ~/$rel_path"
+    if [[ -e "$target" ]]; then
+      local real_path
+      real_path=$(readlink -f "$target" 2>/dev/null || echo "$target")
+
+      # Only backup if not already managed by stow (real path outside dotfiles)
+      if [[ "$real_path" != "$SCRIPT_DIR/"* ]]; then
+        local backup_path="$BACKUP_DIR/$rel_path"
+        mkdir -p "$(dirname "$backup_path")"
+        mv "$target" "$backup_path"
+        echo "   ⚠️  Backed up: ~/$rel_path"
+      fi
     fi
   done < <(find "$pkg_dir" -type f)
 }
