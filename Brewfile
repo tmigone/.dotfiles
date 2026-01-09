@@ -32,6 +32,7 @@ brew "zsh-syntax-highlighting"
 cask "ghostty"
 
 # Dev tools
+brew "gnupg"
 brew "just"
 brew "kubernetes-cli"
 brew "neovim"

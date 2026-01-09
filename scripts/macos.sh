@@ -19,5 +19,9 @@ echo "   ✓ Keyboard navigation"
 defaults write NSGlobalDomain AppleWindowTabbingMode -string 'always'
 echo "   ✓ Window tabbing"
 
+# Disable saving login state
+defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+echo "   ✓ Disable saving login state when logging out"
+
 echo ""
 echo "   ⚠️  Note: 'Disable cursor shake' requires logout to take effect"

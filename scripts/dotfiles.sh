@@ -33,7 +33,7 @@ backup_conflicts() {
 packages=(tmux gitmux zsh oh-my-zsh git bin karabiner ghostty npm)
 for pkg in "${packages[@]}"; do
   backup_conflicts "$pkg"
-  stow --restow "$pkg"
+  stow --restow --no-folding "$pkg"
   echo "   ✓ $pkg"
 done
 
