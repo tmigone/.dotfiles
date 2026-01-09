@@ -27,9 +27,13 @@ show_help() {
 
 if [[ $# -eq 0 ]]; then
   run_script system
+  echo ""
   run_script packages
+  echo ""
   run_script dotfiles
+  echo ""
   run_script macos
+  echo ""
   run_script dock
 elif [[ "$1" == "-h" || "$1" == "--help" ]]; then
   show_help
