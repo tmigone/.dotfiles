@@ -28,13 +28,6 @@ if [[ -n "${COMPUTER_NAME:-}" ]] && [[ "$(scutil --get ComputerName)" != "$COMPU
 fi
 echo "   ✓ Computer name"
 
-# Create SSH key
-if [[ -n "${COMPUTER_NAME:-}" ]] && [[ ! -f ~/.ssh/id_ed25519 ]]; then
-  echo "   ⏳ Creating SSH key..."
-  ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N "" -C "$COMPUTER_NAME@tmigone.com"
-fi
-echo "   ✓ SSH key"
-
 # Create workspace dirs
 mkdir -p ~/git/{tmigone,thegraph}
 echo "   ✓ Workspace directories"

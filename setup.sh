@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-available_functions="system packages dotfiles macos dock"
+available_functions="system packages identity dotfiles macos dock"
 
 run_script() {
   source "$SCRIPT_DIR/scripts/$1.sh"
@@ -15,6 +15,7 @@ show_help() {
   echo "Available functions:"
   echo "  system    - install prerequisites and setup machine"
   echo "  packages  - install packages and apps"
+  echo "  identity  - setup SSH and GPG keys"
   echo "  dotfiles  - install config files"
   echo "  macos     - configure system preferences"
   echo "  dock      - configure dock appearance and apps"
@@ -29,6 +30,8 @@ if [[ $# -eq 0 ]]; then
   run_script system
   echo ""
   run_script packages
+  echo ""
+  run_script identity
   echo ""
   run_script dotfiles
   echo ""
