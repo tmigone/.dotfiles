@@ -318,3 +318,8 @@ find ~/code -name ".git" -execdir bash -c '[[ -n $(git status -s) ]] && pwd' \;
 ```
 **Frequency:** Weekly
 **Notes:** Review and either commit or discard stale changes.
+
+
+
+----
+brew doctor
