@@ -16,6 +16,7 @@ brew "wget"
 
 # OS tools
 brew "dockutil"
+brew "mole"
 cask "daisydisk"
 cask "karabiner-elements"
 cask "logi-options+"

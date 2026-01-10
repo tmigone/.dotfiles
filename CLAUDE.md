@@ -10,7 +10,7 @@ Personal dotfiles repository for macOS using GNU Stow to symlink configurations 
 
 ```bash
 ./setup.sh              # run full setup
-./setup.sh <module>     # run specific module (system, packages, dotfiles, macos, dock)
+./setup.sh <module>     # run specific module (system, packages, identity, dotfiles, macos, dock)
 ./setup.sh --help       # show available options
 ```
 
@@ -20,8 +20,9 @@ Personal dotfiles repository for macOS using GNU Stow to symlink configurations 
 
 Main entry point is `setup.sh` which sources modular scripts from `scripts/`:
 
-- **system.sh** - Xcode CLI tools, Rosetta, computer name, SSH key, workspace dirs
+- **system.sh** - Xcode CLI tools, Rosetta, computer name, workspace dirs
 - **packages.sh** - Homebrew, Brewfile, fnm/Node, pnpm, Rust, oh-my-zsh, try
+- **identity.sh** - SSH key generation, GPG public key import
 - **dotfiles.sh** - Stow all config packages
 - **macos.sh** - System preferences (cursor shake, tap to click, keyboard nav)
 - **dock.sh** - Dock appearance and pinned apps
@@ -36,10 +37,11 @@ Each directory is a stow package mirroring home directory structure:
 
 Packages: `zsh`, `git`, `tmux`, `gitmux`, `karabiner`, `ghostty`, `bin`, `oh-my-zsh`, `npm`
 
-### Other Files
+### Other Directories/Files
 
 - `Brewfile` - Homebrew packages and casks (not stowed)
 - `bootstrap.sh` - Initial setup script for new machines
+- `keys/` - GPG public key for identity setup (not stowed)
 
 ### Zsh Configuration
 

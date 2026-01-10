@@ -56,3 +56,10 @@ if [[ ! -f ~/.local/try.rb ]]; then
   chmod +x ~/.local/try.rb
 fi
 echo "   ✓ try"
+
+# tmux plugins
+if [[ ! -d ~/.tmux/plugins/tmux ]]; then
+  echo "   ⏳ Installing tmux plugins..."
+  /opt/homebrew/opt/tpm/share/tpm/bin/install_plugins
+fi
+echo "   ✓ tmux plugins"
