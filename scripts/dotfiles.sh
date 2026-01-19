@@ -30,7 +30,7 @@ backup_conflicts() {
 }
 
 # Stow packages
-packages=(tmux gitmux zsh oh-my-zsh git bin karabiner ghostty npm)
+packages=(tmux gitmux zsh oh-my-zsh git bin karabiner ghostty npm ssh claude)
 for pkg in "${packages[@]}"; do
   backup_conflicts "$pkg"
   stow --restow --no-folding "$pkg"

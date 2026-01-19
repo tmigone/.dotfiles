@@ -1,0 +1,35 @@
+
+{
+    "hooks": {
+      "Notification": [
+        {
+          "matcher": "permission_prompt",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "/Users/tomi/.local/bin/claude-code-done"
+            }
+          ]
+        },
+        {
+          "matcher": "idle_prompt",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "/Users/tomi/.local/bin/claude-code-done"
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "/Users/tomi/.local/bin/claude-code-done"
+            }
+          ]
+        }
+      ]
+    }
+  }

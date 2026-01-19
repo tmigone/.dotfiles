@@ -26,6 +26,7 @@ cask "tailscale-app"
 
 # Terminal
 brew "pygments"
+brew "terminal-notifier"
 brew "tmux"
 brew "tpm"
 brew "zsh-autosuggestions"

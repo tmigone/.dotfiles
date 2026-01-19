@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if ! osascript -e 'tell application "System Events" to get name of first application process whose frontmost is true' | grep -qi ghostty; then
+    terminal-notifier \
+    -title "Claude" \
+    -message "Claude Code finished" \
+    -activate com.mitchellh.ghostty \
+    -sound default \
+    -contentImage "$HOME/.claude/claude-color.png"
+fi
