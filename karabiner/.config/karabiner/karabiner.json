@@ -276,6 +276,14 @@
                     }
                 ]
             },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true
+                    },
+                    "manipulate_caps_lock_led": false
+                }
+            ],
             "name": "tomi",
             "selected": true,
             "virtual_hid_keyboard": {

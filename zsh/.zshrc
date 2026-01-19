@@ -160,6 +160,48 @@ function nuke_keys() {
   clean_history "PRIVATE_KEY"
 }
 
+# Clone a repo into workspace and optionally open in tmux-sessionizer
+# Usage: tclone <repo_url> [workspace]
+function tclone() {
+  local repo="$1"
+  local workspace="$2"
+
+  if [[ -z "$repo" ]]; then
+    echo "Usage: tclone <repo_url> [workspace]"
+    echo "Workspaces: tmigone, thegraph"
+    return 1
+  fi
+
+  # Prompt for workspace if not provided
+  if [[ -z "$workspace" ]]; then
+    echo "Clone to which workspace?"
+    select ws in "tmigone" "thegraph"; do
+      workspace="$ws"
+      break
+    done
+  fi
+
+  local target_dir="$HOME/git/$workspace"
+  if [[ ! -d "$target_dir" ]]; then
+    echo "Workspace not found: $target_dir"
+    return 1
+  fi
+
+  # Extract repo name from URL
+  local repo_name=$(basename "$repo" .git)
+
+  echo "Cloning $repo_name into $target_dir..."
+  git clone "$repo" "$target_dir/$repo_name"
+
+  if [[ $? -eq 0 ]]; then
+    echo "Done! Open in tmux? (Y/n): "
+    read -r answer
+    if [[ "$answer" != "n" && "$answer" != "N" ]]; then
+      tmux-sessionizer "$target_dir/$repo_name"
+    fi
+  fi
+}
+
 # Fast-forward merge an audited branch into base branch
 function audit_merge() {
   local base_branch="$1"

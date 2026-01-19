@@ -31,3 +31,7 @@ echo "   ✓ Computer name"
 # Create workspace dirs
 mkdir -p ~/git/{tmigone,thegraph}
 echo "   ✓ Workspace directories"
+
+# TODO: script this
+# Set HiDPI custom resolutions
+# bash -c "$(curl -fsSL https://raw.githubusercontent.com/xzhih/one-key-hidpi/master/hidpi.sh)"
