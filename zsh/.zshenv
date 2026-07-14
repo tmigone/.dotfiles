@@ -2,7 +2,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Rust toolchain
-. "$HOME/.cargo/env"
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 
 # Node version manager
 eval "$(fnm env)"
@@ -19,3 +19,17 @@ export GPG_TTY=$(tty)
 # Homebrew configuration
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_ENV_HINTS=1
+
+# OpenSSL configuration
+export OPENSSL_DIR=$(brew --prefix openssl@3)
+export PKG_CONFIG_PATH="$OPENSSL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# amp
+export PATH="$PATH:/Users/tomi/.amp/bin"
+
+# pnpm
+export PNPM_HOME="/Users/tomi/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac

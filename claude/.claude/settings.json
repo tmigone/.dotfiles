@@ -1,35 +1,40 @@
-
 {
-    "hooks": {
-      "Notification": [
-        {
-          "matcher": "permission_prompt",
-          "hooks": [
-            {
-              "type": "command",
-              "command": "/Users/tomi/.local/bin/claude-code-done"
-            }
-          ]
-        },
-        {
-          "matcher": "idle_prompt",
-          "hooks": [
-            {
-              "type": "command",
-              "command": "/Users/tomi/.local/bin/claude-code-done"
-            }
-          ]
-        }
-      ],
-      "Stop": [
-        {
-          "hooks": [
-            {
-              "type": "command",
-              "command": "/Users/tomi/.local/bin/claude-code-done"
-            }
-          ]
-        }
-      ]
-    }
-  }
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/tomi/.local/bin/claude-code-done"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/tomi/.local/bin/claude-code-done"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/tomi/.local/bin/claude-code-done"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "light",
+  "tui": "fullscreen"
+}

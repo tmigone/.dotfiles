@@ -53,8 +53,8 @@ alias dev='cd ~/git/tmigone'
 alias tgp='cd ~/git/thegraph'
 alias cl='clear'
 alias g='google'
-alias gh="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
-alias c='cursor --reuse-window --add .'
+alias ghh="open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
+alias c='zed --existing --add .'
 alias cat='ccat'
 alias p='ping 1.1.1.1'
 
@@ -279,4 +279,10 @@ function rebase_chain() {
   done
 
   echo -e "\n🎉 Rebase chain complete."
+}
+
+# Filter pino logs by component
+pino_component() {
+  local component="$1"
+  gstdbuf -oL jq -cR "fromjson? | select(.component==\"$component\")" | pino
 }

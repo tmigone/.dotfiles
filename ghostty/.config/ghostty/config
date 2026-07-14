@@ -10,3 +10,8 @@ window-padding-color = background
 window-padding-balance = true
 window-padding-x = 5
 window-padding-y = 5
+
+quick-terminal-position=right
+quick-terminal-size=40%,40%
+
+macos-option-as-alt=true
